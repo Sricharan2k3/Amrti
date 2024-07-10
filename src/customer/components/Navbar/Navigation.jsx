@@ -85,7 +85,7 @@ const navigation = {
     },
   ],
   pages: [
-    { name: "Home", href: "/" },
+    { name: "Hom", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Recipes", href: "/recipes" },
   ],
