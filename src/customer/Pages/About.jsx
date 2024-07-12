@@ -10,25 +10,16 @@ export const About = () => {
           <div className="flex flex-col justify-center">
             <div className="max-w-xl mb-6">
               <p className="text-base text-gray-700 md:text-lg">
-                Our journey began with a passion for delivering pure, natural,
-                and wholesome edible oils to every home. We believe in the power
-                of nature and strive to bring its essence to your table through
-                our meticulously crafted oils. Our commitment extends beyond
-                quality; we actively source from responsible growers.
-                cultivating relationships rooted in trust and sustainability.
+              Our journey began with a passion for delivering pure, natural, and wholesome edible products to every home. We believe in the power of nature and strive to bring its essence to your table through our meticulously crafted powders. Our commitment extends beyond quality; we actively source from responsible growers. cultivating relationships rooted in trust and sustainability. 
               </p>
             </div>
             <h1 className=" font-sans font-bold  text-gray-900 sm:text-xl sm:leading-none ">
-              Commitment to quality, sourcing, and sustainability-
+              Commitment to quality, sourcing, and sustainability:
             </h1>
             <br />
             <div className="max-w-xl mb-6">
               <p className="text-base text-gray-700 md:text-lg">
-                Quality is the cornerstone of AMRTI. We pick only the finest
-                seeds and nuts ensuring that each droplet encapsulates both
-                purity and nutritional richness. We stand by local farmers and
-                sustainable farming techniques, safeguarding the environment for
-                future generations
+              Quality is the cornerstone of AMRTI. We pick only the finest quality herbs and seeds ensuring that each product encapsulates both purity and nutritional richness. We stand by local farmers and sustainable farming techniques, safeguarding the environment for future generations.
               </p>
             </div>
           </div>

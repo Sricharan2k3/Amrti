@@ -34,19 +34,19 @@ const navigation = {
         },
       ],
       sections: [
+        // {
+        //   id: "clothing",
+        //   name: "Oils",
+        //   items: [
+        //     { name: "Safflower", href: "/product/65b4e0f56d5fdf8013a98d53" },
+        //     { name: "Sesame", href: "/product/65b0b2ec84905519fd15883b" },
+        //     { name: "Sunflower", href: "/product/65cb4006dcfb76224065c7c4" },
+        //     { name: "GroundNut", href: "/product/65cb37b3dcfb76224065c17e" },
+        //     { name: "Mustard", href: "/product/65cb3d21dcfb76224065c5c8" },
+        //   ],
+        // },
         {
-          id: "clothing",
-          name: "Oils",
-          items: [
-            { name: "Safflower", href: "/product/65b4e0f56d5fdf8013a98d53" },
-            { name: "Sesame", href: "/product/65b0b2ec84905519fd15883b" },
-            { name: "Sunflower", href: "/product/65cb4006dcfb76224065c7c4" },
-            { name: "GroundNut", href: "/product/65cb37b3dcfb76224065c17e" },
-            { name: "Mustard", href: "/product/65cb3d21dcfb76224065c5c8" },
-          ],
-        },
-        {
-          id: "accessories",
+          id: "kombucha",
           name: "Kombucha",
           items: [
             { name: "Pomegranate", href: "/product/65c4b7f5dcfb762240655c67" },
@@ -64,13 +64,25 @@ const navigation = {
           ],
         },
         {
-          id: "staples",
-          name: "Staples",
+          id: "powders",
+          name: "Powders",
           items: [
-            { name: "Rajma", href: "/product/65eeff7163429a82a0a20628" },
-            { name: "GroundNut", href: "/product/65eefa2963429a82a0a20489" },
+            { name: "Tomato Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Moringa Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Papaya Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Beetroot Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Spinach Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Amla Powder", href: "/product/65e8567763429a82a0a1f804" },
           ],
         },
+        // {
+        //   id: "staples",
+        //   name: "Staples",
+        //   items: [
+        //     { name: "Rajma", href: "/product/65eeff7163429a82a0a20628" },
+        //     { name: "GroundNut", href: "/product/65eefa2963429a82a0a20489" },
+        //   ],
+        // },
         // {
         //   id: "brands",
         //   name: "Ghee",
