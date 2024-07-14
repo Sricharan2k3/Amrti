@@ -62,12 +62,10 @@ export const findProducts = (reqData) => async (dispatch) => {
   }
 };
 export const findAllProducts = () => async (dispatch) => {
-  
-
   try {
     dispatch({ type: FIND_ALL_PRODUCTS_REQUEST });
 
-     const { data } = await axios.get(`${API_BASE_URL}/api/products/`);
+    const { data } = await axios.get(`${API_BASE_URL}/api/products/`);
     console.log("all - ", data);
     dispatch({
       type: FIND_ALL_PRODUCTS_SUCCESS,
@@ -88,7 +86,9 @@ export const findProductById = (reqData) => async (dispatch) => {
   try {
     dispatch({ type: FIND_PRODUCT_BY_ID_REQUEST });
 
-    const { data } = await api.get(`/api/products/id/${reqData.productId}`);
+    const { data } = await api.get(
+      `${API_BASE_URL}/api/products/id/${reqData.productId}`
+    );
 
     console.log("products by  id : ", data);
     dispatch({
@@ -119,7 +119,6 @@ export const createProduct = (product) => async (dispatch) => {
       type: CREATE_PRODUCT_SUCCESS,
       payload: data,
     });
-
   } catch (error) {
     dispatch({
       type: CREATE_PRODUCT_FAILURE,
@@ -132,18 +131,16 @@ export const createProduct = (product) => async (dispatch) => {
 };
 export const createReport = (report) => async (dispatch) => {
   try {
-
     dispatch({ type: CREATE_REPORT_REQUEST });
 
     const { data } = await api.post(`${API_BASE_URL}/api/reports`, report);
-   
+
     dispatch({
       type: CREATE_REPORT_SUCCESS,
       payload: data,
     });
-     
-    return data;
 
+    return data;
   } catch (error) {
     dispatch({
       type: CREATE_REPORT_FAILURE,
@@ -180,22 +177,16 @@ export const updateProduct = (product) => async (dispatch) => {
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
-
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    let {data}=await api.delete(`/api/admin/products/${productId}`);
-
-  
+    let { data } = await api.delete(`/api/admin/products/${productId}`);
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
       payload: productId,
     });
-
-    
   } catch (error) {
-
     dispatch({
       type: DELETE_PRODUCT_FAILURE,
       payload:

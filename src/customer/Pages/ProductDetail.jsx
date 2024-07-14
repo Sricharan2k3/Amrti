@@ -122,8 +122,7 @@ export default function ProductDetail() {
           {/* Image gallery */}
           <div className="flex flex-col items-center ">
             <div className=" overflow-hidden rounded-lg">
-              <img
-                src={
+              <img src={
                   activeImage?.url || customersProduct.product?.imageUrl[0].url
                 }
                 alt={"product image"}

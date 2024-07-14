@@ -6,7 +6,7 @@ import { Values } from '../components/values/values'
 import { Mission } from '../components/mission/mission'
 import { Vision } from '../components/vision/vision'
 import ProductCarousel from './ProductCarousel'
-import { Process } from '../components/vision/Process'
+// import { Process } from '../components/vision/Process'
 import './Home.css'
 import Story from '../components/vision/Storyy'
 import Compare from './Compare'
@@ -51,9 +51,9 @@ const HomePage = () => {
           ></path>
         </svg>
       </div>
-      <div style={{ background: "#f9f1e1", margin: "0", padding: "0" }}>
+      {/* <div style={{ background: "#f9f1e1", margin: "0", padding: "0" }}>
         <Process />
-      </div>
+      </div> */}
 
       <div class="contain" style={{ margin: "0", background: "white" }}>
         <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">

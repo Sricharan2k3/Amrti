@@ -16,7 +16,7 @@ const MainCarousel = () => {
           itemID={1}
           className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
         >
-          <img src={sesame} className="block w-full car" alt="..." />
+          <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/kombucha-carosal.jpg" className="block w-full car" alt="..." />
           <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
             {/* <h5 className="text-xl">First slide label</h5>
               <p>
@@ -28,7 +28,7 @@ const MainCarousel = () => {
           itemID={2}
           className="relative float-left hidden -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
         >
-          <img src={groundnut} className="block w-full car" alt="..." />
+          <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/amreti-1-corosal.jpg" className="block w-full car" alt="..." />
           <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
             {/* <h5 className="text-xl">Second slide label</h5>
               <p>
@@ -40,7 +40,7 @@ const MainCarousel = () => {
           itemID={3}
           className="relative float-left hidden -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
         >
-          <img src={mustard} className="block w-full car" alt="..." />
+          <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/amrti-2-corosal.jpg" className="block w-full car" alt="..." />
           <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
             {/* <h5 className="text-xl">Second slide label</h5>
               <p>
@@ -48,7 +48,7 @@ const MainCarousel = () => {
               </p> */}
           </div>
         </TECarouselItem>
-        <TECarouselItem
+        {/* <TECarouselItem
           itemID={4}
           className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
         >
@@ -59,7 +59,7 @@ const MainCarousel = () => {
                 Some representative placeholder content for the third slide.
               </p>
             </div> */}
-        </TECarouselItem>
+        {/* </TECarouselItem>
 
         <TECarouselItem
           itemID={5}
@@ -72,7 +72,7 @@ const MainCarousel = () => {
           className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
         >
           <img src={kombucha} className="block w-full car" alt="..." />
-        </TECarouselItem>
+        </TECarouselItem> */} 
       </div>
     </TECarousel>
   );
