@@ -40,10 +40,11 @@ const navigation = {
           items: [
             { name: "Turmeric Powder", href: "/product/65b4e0f56d5fdf8013a98d53" },
             { name: "Moringa Powder", href: "/product/65b0b2ec84905519fd15883b" },
-            { name: "Papaya Powder", href: "/product/65cb4006dcfb76224065c7c4" },
-            { name: "Beetroot Powder", href: "/product/65cb37b3dcfb76224065c17e" },
+            { name: "Papaya Powder", href: "/product/65cb37b3dcfb76224065c17e" },
+            { name: "Beetroot Powder", href: "/product/65cb4006dcfb76224065c7c4" },
             { name: "Spinach Powder", href: "/product/65cb3d21dcfb76224065c5c8" },
-            { name: "Amla Powder", href: "/product/65e8567763429a82a0a1f804" },
+            { name: "Amla Powder", href: "/product/6694bf76da8c2b2bddf64753" },
+            { name: "Tomato Powder", href: "/product/6694c2ccda8c2b2bddf64754" },
           ],
         },
         {
