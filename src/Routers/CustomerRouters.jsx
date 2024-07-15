@@ -24,6 +24,12 @@ import Return from "../customer/Pages/Return";
 import Shipping from "../customer/Pages/Shipping";
 import ReportForm from "../customer/Pages/ReportForm";
 import Report from "../customer/Pages/Report";
+import MooringaSoothie from "../customer/Pages/mooringaSoothie";
+import AmlaPowder from "../customer/Pages/AmlaPowderTea";
+import BeetRootPowder from "../customer/Pages/BeetrootPowderLatte";
+import SpinachPowder from "../customer/Pages/SpinachPowderOmelette";
+import Papayapowder from "../customer/Pages/PapayaPowderOvernightOats";
+import Tomato from "../customer/Pages/tomato";
 
 const CustomerRouters = () => {
   return (
@@ -52,6 +58,38 @@ const CustomerRouters = () => {
             path="/recipes/seasmeNoodles"
             element={<SeasameNoodle />}
           ></Route>
+
+           <Route
+            path="/recipes/mooringaSoothie"
+            element={<MooringaSoothie/>}
+          ></Route>
+
+         <Route
+            path="/recipes/AmlaPowder"
+            element={<AmlaPowder/>}
+          ></Route>
+
+          <Route
+            path="/recipes/BeetRootPowder"
+            element={<BeetRootPowder/>}
+          ></Route>
+
+         <Route
+            path="/recipes/SpinachPowder"
+            element={<SpinachPowder/>}
+          ></Route>
+
+          <Route
+            path="/recipes/PapayaPowder"
+            element={<Papayapowder/>}
+          ></Route>
+         
+         <Route
+            path="/recipes/Tomato"
+            element={<Tomato />}
+          ></Route>
+
+
           <Route
             path="/recipes/paneerTikka"
             element={<AchaariPaneerTikka />}
