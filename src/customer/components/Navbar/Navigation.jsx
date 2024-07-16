@@ -7,12 +7,15 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import logo from "./Logo.png";
+import amrti from "./amrti.png"
+
 import AuthModal from "../Auth/AuthModal";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { getUser, logout } from "../../../State/Auth/Action";
 import { getCart } from "../../../State/Cart/Action";
+
 const navigation = {
   categories: [
     {
@@ -22,13 +25,13 @@ const navigation = {
         {
           name: "New Arrival",
           href: "#",
-          imageSrc: logo,
+          imageSrc: "",
           imageAlt: "img",
         },
         {
           name: "Bestseller",
           href: "#",
-          imageSrc: logo,
+          imageSrc: "",
           imageAlt:
             "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
@@ -343,8 +346,8 @@ export default function Navigation() {
                 <a href="/">
                   <img
                     className="logo"
-                    style={{ height: "200px", width: "auto", margin: "0" }}
-                    src={logo}
+                    style={{ height: "80px", width: "auto", margin: "0" }}
+                    src={amrti}
                     alt=""
                   />
                 </a>
