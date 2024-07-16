@@ -3,7 +3,7 @@ import chickpeaStirFryImage from "./Chickpea.jpg"; // Make sure the path matches
 
 const Tomato = () => {
   return (
-    <div className="max-w-screen-lg mx-auto" style={{ paddingTop: "45px" }}>
+    <div className="max-w-screen-lg mx-auto"    style={{ paddingTop: "45px" }}>
       <h1 className="text-4xl font-bold text-center my-8">Tomato Powder Popcorn
       </h1>
       <div className="w-full">
