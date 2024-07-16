@@ -25,13 +25,13 @@ const navigation = {
         {
           name: "New Arrival",
           href: "#",
-          imageSrc: "",
+          imageSrc: logo,
           imageAlt: "img",
         },
         {
           name: "Bestseller",
           href: "#",
-          imageSrc: "",
+          imageSrc: logo,
           imageAlt:
             "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
