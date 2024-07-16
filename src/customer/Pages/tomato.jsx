@@ -8,7 +8,7 @@ const Tomato = () => {
       </h1>
       <div className="w-full">
         <img
-          src={chickpeaStirFryImage}
+          src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Tomato-Powder-Popcorn-in.png"
           alt="Chickpea Stir-Fry"
           className="w-full object-cover h-64 md:h-96"
         />

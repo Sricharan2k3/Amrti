@@ -26,7 +26,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                  
                 </a>
                 {/* <span className="text-gray-600">— 28 Dec 2020</span> */}
               </p>
@@ -61,7 +61,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Mustard oil
+                  
                 </a>
               </p>
               <a
@@ -95,7 +95,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Sunflower Oil
+                  
                 </a>
               </p>
               <a
@@ -129,7 +129,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Safflower oil
+                  
                 </a>
               </p>
               <a
@@ -163,7 +163,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Mustard oil
+                
                 </a>
               </p>
               <a
@@ -197,7 +197,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Sesame oil
+                  
                 </a>
               </p>
               <a
@@ -224,7 +224,7 @@ export const Recipes = () => {
 
 
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/moringa-smoothie-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -233,7 +233,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                
                 </a>
               </p>
               <a
@@ -261,7 +261,7 @@ export const Recipes = () => {
 
                
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/SPINACH-POWDER-OMELETTE-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -271,7 +271,7 @@ export const Recipes = () => {
                   title="traveling"
                 >
                   
-                 Edible Oil
+                
 
                 </a>
               </p>
@@ -299,7 +299,7 @@ export const Recipes = () => {
 
 
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Amla-Powder-Tea-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -308,7 +308,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                
                 </a>
               </p>
               <a
@@ -335,7 +335,7 @@ export const Recipes = () => {
 
 
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Beetroot-Powder-Latte-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -344,7 +344,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                
                 </a>
               </p>
               <a
@@ -370,7 +370,7 @@ export const Recipes = () => {
           </div>
 
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Tomato-Powder-Popcorn-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -379,7 +379,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                
                 </a>
               </p>
               <a
@@ -406,7 +406,7 @@ export const Recipes = () => {
 
 
           <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
-            <img src={sesame} className="object-cover w-full h-64" alt="" />
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Papaya-Powder-out.png" className="object-cover w-full h-64" alt="" />
             <div className="p-5 border border-t-0 h-full">
               <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <a
@@ -415,7 +415,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Edible Oil
+                  
                 </a>
               </p>
               <a
