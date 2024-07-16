@@ -26,7 +26,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Groundnut Oil
+                  Edible Oil
                 </a>
                 {/* <span className="text-gray-600">— 28 Dec 2020</span> */}
               </p>
@@ -233,7 +233,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Moringa Smoothie
+                  Edible Oil
                 </a>
               </p>
               <a
@@ -242,7 +242,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                 Moringa Smoothie
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
@@ -271,7 +271,7 @@ export const Recipes = () => {
                   title="traveling"
                 >
                   
-                Spinach Powder Omelette
+                 Edible Oil
 
                 </a>
               </p>
@@ -281,7 +281,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                   Spinach Powder Omelette
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
@@ -308,7 +308,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Amla Powder Tea
+                  Edible Oil
                 </a>
               </p>
               <a
@@ -317,7 +317,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                  Amla Powder Tea
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
@@ -344,7 +344,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Beetroot Powder Latte
+                  Edible Oil
                 </a>
               </p>
               <a
@@ -353,7 +353,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                Beetroot Powder Latte
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
@@ -379,7 +379,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Tomato Powder Popcorn
+                  Edible Oil
                 </a>
               </p>
               <a
@@ -388,7 +388,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                  Tomato Powder Popcorn
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
@@ -415,7 +415,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Papaya Powder
+                  Edible Oil
                 </a>
               </p>
               <a
@@ -424,7 +424,7 @@ export const Recipes = () => {
                 title="Film It!"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Sesame & Peanut Noodles
+                 Papaya Powder
               </a>
               <p className="mb-2 text-gray-700">
                 Silky noodles coated in a rich, nutty sauce with a hint of
