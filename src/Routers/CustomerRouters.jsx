@@ -31,17 +31,21 @@ import SpinachPowder from "../customer/Pages/SpinachPowderOmelette";
 import Papayapowder from "../customer/Pages/PapayaPowderOvernightOats";
 import Tomato from "../customer/Pages/tomato";
 import MoringaReport from "../customer/reports/MoringaReport"
-
+import MoringaRecipeCategories from "../customer/reports/MoringaRecipe";
 const CustomerRouters = () => {
   return (
     <div>
       <div>
         <Routes>
-      <Route path="/product/moringa/101" element={<MoringaReport/>}></Route></Routes>
+      <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
+      <Route path="/product/moringa/recipes" element={<MoringaRecipeCategories/>}></Route>
+      </Routes>
       </div>
       <div className="nav">
         <Navigation />
+
       </div>
+      
       <div>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
