@@ -25,7 +25,7 @@ const MoringaRecipeCategories = () => {
             <div className="bg-gray-300 aspect-video mb-2 flex items-center justify-center text-gray-600">
               {category.image}
             </div>
-            <div className="bg-orange-200 p-2 text-center text-sm">
+            <div className="bg-orange-200 p-2 h-auto text-center text-sm">
               {category.title}
             </div>
           </div>
@@ -35,7 +35,7 @@ const MoringaRecipeCategories = () => {
     <div className="h-60">
 
     </div>
-    <div className="flex justify-around items-center bg-white p-4 border-t border-gray-200">
+    <div className="flex fixed bottom-0 w-full justify-around items-center bg-white p-4 border-t border-gray-200">
       {bottomIcons.map(({ Icon, label }, index) => (
         <div key={index} className="flex flex-col items-center">
           <Icon className="w-6 h-6 mb-1" />

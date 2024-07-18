@@ -44,7 +44,7 @@ const MoringaFarmerDetails = () => {
         </div>
       </div>
       
-      <div className="flex justify-around items-center bg-white p-4 border-t border-gray-200">
+      <div className="flex fixed bottom-0 w-full justify-around items-center bg-white p-4 border-t border-gray-200">
         {bottomIcons.map(({ Icon, label }, index) => (
           <div key={index} className="flex flex-col items-center">
             <Icon className="w-6 h-6 mb-1" />

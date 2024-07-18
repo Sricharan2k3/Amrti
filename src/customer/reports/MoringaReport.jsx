@@ -54,7 +54,7 @@ const MoringaReport=()=>{
               </div>
         
               {/* Bottom navigation */}
-              <div className=" flex justify-around py-2 bg-green-50">
+              <div className=" flex fixed bottom-0 w-full justify-around py-2 bg-green-50">
                 {[
                   { icon: <Leaf className="w-5 h-5" />, label: 'Benefits' },
                   { icon: <BookOpen className="w-5 h-5" />, label: 'Recipes' },
