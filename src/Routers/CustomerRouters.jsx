@@ -30,6 +30,7 @@ import BeetRootPowder from "../customer/Pages/BeetrootPowderLatte";
 import SpinachPowder from "../customer/Pages/SpinachPowderOmelette";
 import Papayapowder from "../customer/Pages/PapayaPowderOvernightOats";
 import Tomato from "../customer/Pages/tomato";
+import MoringaReport from "../customer/reports/MoringaReport"
 
 const CustomerRouters = () => {
   return (
@@ -102,6 +103,8 @@ const CustomerRouters = () => {
           <Route path="/recipes/saag" element={<Saag />}></Route>
 
           <Route path="/recipes/salad" element={<Salad />}></Route>
+
+          <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
           <Route path="/return" element={<Return />}></Route>
           <Route path="/shipping" element={<Shipping />}></Route>
           <Route path="/form" element={<ReportForm />}></Route>
