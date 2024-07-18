@@ -32,6 +32,7 @@ import Papayapowder from "../customer/Pages/PapayaPowderOvernightOats";
 import Tomato from "../customer/Pages/tomato";
 import MoringaReport from "../customer/reports/MoringaReport"
 import MoringaRecipeCategories from "../customer/reports/MoringaRecipe";
+import MoringaFarmerDetails from "../customer/reports/MoringaTraceability";
 const CustomerRouters = () => {
   return (
     <div>
@@ -39,6 +40,7 @@ const CustomerRouters = () => {
         <Routes>
       <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
       <Route path="/product/moringa/recipes" element={<MoringaRecipeCategories/>}></Route>
+      <Route path="/product/moringa/farmer-details" element={<MoringaFarmerDetails/>}></Route>
       </Routes>
       </div>
       <div className="nav">

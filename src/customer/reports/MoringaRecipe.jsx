@@ -32,7 +32,7 @@ const MoringaRecipeCategories = () => {
         ))}
       </div>
     </div>
-    <div className='h-64'>
+    <div className="h-60">
 
     </div>
     <div className="flex justify-around items-center bg-white p-4 border-t border-gray-200">

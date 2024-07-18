@@ -18,7 +18,7 @@ const MoringaReport=()=>{
               {/* </div> */}
         
               {/* Video placeholder */}
-              <div className="bg-gray-200 h-64 mt-12 flex items-center justify-center">
+              <div className="bg-gray-200 h-64 mt-16 flex items-center justify-center">
                 <span className="text-gray-600 text-sm">Moringa Video</span>
               </div>
         
