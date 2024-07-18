@@ -25,17 +25,19 @@ function App() {
       dispatch(getUser(jwt));
     }
   }, []);
-     const getRoutes = () => {
-       if (auth?.user?.role === "ADMIN") {
-         return <AdminRoutes />;
-       } else {
-         return <CustomerRouters />;
-       }
-     };
+  const getRoutes = () => {
+    console.log(auth);
+    if (auth?.user?.role === "ADMIN") {
+      return <AdminRoutes />;
+    } else {
+      return <CustomerRouters />;
+    }
+  };
   return (
     <div>
       <Routes>
         <Route path="/*" element={getRoutes()} />
+
         {/* <Route path="/admin/*" element={<AdminPannel />}></Route> */}
       </Routes>
     </div>

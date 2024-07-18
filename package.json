@@ -17,6 +17,7 @@
     "axios": "^1.6.5",
     "flowbite-react": "^0.7.2",
     "jquery": "^3.7.1",
+    "lucide-react": "^0.408.0",
     "mdi-material-ui": "^7.8.0",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.8.0",

@@ -35,7 +35,10 @@ import MoringaReport from "../customer/reports/MoringaReport"
 const CustomerRouters = () => {
   return (
     <div>
-      
+      <div>
+        <Routes>
+      <Route path="/product/moringa/101" element={<MoringaReport/>}></Route></Routes>
+      </div>
       <div className="nav">
         <Navigation />
       </div>
@@ -104,7 +107,7 @@ const CustomerRouters = () => {
 
           <Route path="/recipes/salad" element={<Salad />}></Route>
 
-          <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
+          
           <Route path="/return" element={<Return />}></Route>
           <Route path="/shipping" element={<Shipping />}></Route>
           <Route path="/form" element={<ReportForm />}></Route>
