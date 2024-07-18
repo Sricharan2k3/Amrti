@@ -6,7 +6,7 @@ const MoringaReport=()=>{
         
       
           return (
-            <div className="flex flex-col w-[350px] h-auto bg-white overflow-hidden">
+            <div className="flex flex-col w-auto h-auto bg-white overflow-hidden">
               {/* Status bar */}
               {/* <div className="flex justify-between items-center px-4 py-1 bg-white text-xs">
                 <span>12:30</span>
