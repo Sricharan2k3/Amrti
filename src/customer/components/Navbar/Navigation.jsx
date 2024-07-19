@@ -62,44 +62,44 @@ const navigation = {
             
           ],
         },
-        // {
-        //   id: "spices",
-        //   name: "Spices",
-        //   items: [
+  //       // {
+  //       //   id: "spices",
+  //       //   name: "Spices",
+  //       //   items: [
            
-        //   ],
-        // },
-        // {
-        //   id: "powders",
-        //   name: "Powders",
-        //   items: [
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
-        //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //   ],
+  //       // },
+  //       // {
+  //       //   id: "powders",
+  //       //   name: "Powders",
+  //       //   items: [
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
+  //       //     { name: "", href: "/product/65e8567763429a82a0a1f804" },
             
-        //   ],
-        // },
-        // {
-        //   id: "staples",
-        //   name: "Staples",
-        //   items: [
-        //     { name: "Rajma", href: "/product/65eeff7163429a82a0a20628" },
-        //     { name: "GroundNut", href: "/product/65eefa2963429a82a0a20489" },
-        //   ],
-        // },
-        // {
-        //   id: "brands",
-        //   name: "Ghee",
-        //   items: [
-        //     { name: "Sunflower", href: "#" },
-        //     { name: "GroundNut", href: "#" },
-        //     { name: "Sunflower", href: "#" },
-        //     { name: "GroundNut", href: "#" },
-        //   ],
-        // },
+  //       //   ],
+  //       // },
+  //       // {
+  //       //   id: "staples",
+  //       //   name: "Staples",
+  //       //   items: [
+  //       //     { name: "Rajma", href: "/product/65eeff7163429a82a0a20628" },
+  //       //     { name: "GroundNut", href: "/product/65eefa2963429a82a0a20489" },
+  //       //   ],
+  //       // },
+  //       // {
+  //       //   id: "brands",
+  //       //   name: "Ghee",
+  //       //   items: [
+  //       //     { name: "Sunflower", href: "#" },
+  //       //     { name: "GroundNut", href: "#" },
+  //       //     { name: "Sunflower", href: "#" },
+  //       //     { name: "GroundNut", href: "#" },
+  //       //   ],
+  //       // },
       ],
     },
   ],
@@ -107,6 +107,7 @@ const navigation = {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Recipes", href: "/recipes" },
+    {name:"Products", href:"/products"}
   ],
 };
 
@@ -209,7 +210,7 @@ export default function Navigation() {
                 </div>
 
                 {/* Links */}
-                <Tab.Group as="div" className="mt-2">
+                {/* <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
                       {navigation.categories.map((category) => (
@@ -293,7 +294,7 @@ export default function Navigation() {
                       </Tab.Panel>
                     ))}
                   </Tab.Panels>
-                </Tab.Group>
+                </Tab.Group> */}
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
@@ -366,7 +367,7 @@ export default function Navigation() {
                     </div>
                   ))}
 
-                  {navigation.categories.map((category) => (
+                  {/* {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
                       {({ open }) => (
                         <>
@@ -394,128 +395,19 @@ export default function Navigation() {
                           >
                             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div
+                              {/* <div
                                 className="absolute inset-0 top-1/2 bg-white shadow"
                                 aria-hidden="true"
                               />
 
-                              <div className="relative bg-white">
-                                <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {category.featured.map((item) => (
-                                        <div
-                                          key={item.name}
-                                          className="group relative text-base sm:text-sm"
-                                        >
-                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
-                                              src={item.imageSrc}
-                                              alt={item.imageAlt}
-                                              className="object-cover object-center"
-                                            />
-                                          </div>
-                                          <a
-                                            href={item.href}
-                                            className="mt-6 block font-medium text-gray-900"
-                                          >
-                                            <span
-                                              className="absolute inset-0 z-10"
-                                              aria-hidden="true"
-                                            />
-                                            {item.name}
-                                          </a>
-                                          <p
-                                            aria-hidden="true"
-                                            className="mt-1"
-                                          >
-                                            Shop now
-                                          </p>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    <div
-                                      className="row-start-1 grid grid-cols-1 gap-x-8 text-sm"
-                                      style={{ height: "100px" }}
-                                    >
-                                      {category.sections.map((section) => (
-                                        <div
-                                          key={section.name}
-                                          onClick={() =>
-                                            setHoveredSection(section.name)
-                                          }
-                                          className="flex items-start" // Ensure items are aligned at the start and in a row
-                                          style={{ margin: "10px" }}
-                                        >
-                                          <p
-                                            id={`${section.name}-heading`}
-                                            className={`font-xl text-gray-900 cursor-pointer ${
-                                              hoveredSection === section.name
-                                                ? "underline"
-                                                : "" 
-                                            }`}
-                                            style={{
-                                              fontWeight: "bold",
-                                              fontSize: "25px",
-                                              minWidth: "200px",
-                                            }}
-                                          >
-                                            {section.name}
-                                          </p>
-                                          <ul
-                                            role="list"
-                                            aria-labelledby={`${section.name}-heading`}
-                                            className={`ml-6 space-y-6 sm:ml-4 sm:space-y-4
-                                            `}
-                                            style={{
-                                              display:
-                                                hoveredSection === section.name
-                                                  ? "block"
-                                                  : "none",
-                                              zIndex: "1000",
-                                              position: "relative",
-                                              height: "0",
-                                            }}
-                                          >
-                                            {section.items.map((item) => (
-                                              <li
-                                                key={item.name}
-                                                className="flex"
-                                              >
-                                                <Popover.Button>
-                                                  <a
-                                                    style={{
-                                                      cursor: "pointer",
-                                                    }}
-                                                    onClick={() =>
-                                                      navigate(`${item.href}`)
-                                                    }
-                                                    className="hover:text-gray-800"
-                                                  >
-                                                    {item.name}
-                                                  </a>
-                                                </Popover.Button>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                          <br />
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                             
                             </Popover.Panel>
                           </Transition>
                         </>
                       )}
                     </Popover>
-                  ))}
-                  <a
-                    onClick={handleContactUsClick}
-                    style={{ cursor: "pointer" }}
-                    className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
+                  ))} */} 
+                  <a onClick={handleContactUsClick} style={{ cursor: "pointer" }} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
                     Contact Us
                   </a>
                 </div>

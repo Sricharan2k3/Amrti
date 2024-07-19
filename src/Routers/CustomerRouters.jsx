@@ -9,6 +9,8 @@ import Order from "../customer/components/Order/Order";
 import Footer from "../customer/components/Footer/Footer";
 import Checkout from "../customer/components/Checkout/Checkout";
 import { About } from "../customer/Pages/About";
+import { Product } from "../customer/Pages/Products";
+
 import { Faq } from "../customer/Pages/FAQ";
 import TnC from "../customer/Pages/TnC";
 import Privacy from "../customer/Pages/Privacy";
@@ -56,6 +58,7 @@ const CustomerRouters = () => {
           <Route path="/TnC" element={<TnC />}></Route>
           <Route path="/privacy" element={<Privacy />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/products" element={<Product/>}></Route>
           <Route path="/login" element={<HomePage />}></Route>
           <Route path="/register" element={<HomePage />}></Route>
           <Route path="/cart" element={<Cart />}></Route>

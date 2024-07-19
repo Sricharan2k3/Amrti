@@ -1,9 +1,13 @@
 import React from "react"
+import { useLocation } from 'react-router-dom';
+
 import { Video, Leaf, BookOpen, Map, Award } from 'lucide-react';
 const MoringaReport=()=>{
     
         
-        
+  const location = useLocation();
+  const currentPath = location.pathname;
+   
       
           return (
             <div className="flex flex-col w-auto h-auto bg-white overflow-hidden">
@@ -56,14 +60,16 @@ const MoringaReport=()=>{
               {/* Bottom navigation */}
               <div className=" flex fixed bottom-0 w-full justify-around py-2 bg-green-50">
                 {[
-                  { icon: <Leaf className="w-5 h-5" />, label: 'Benefits' },
-                  { icon: <BookOpen className="w-5 h-5" />, label: 'Recipes' },
-                  { icon: <Map className="w-5 h-5" />, label: 'Traceability' },
-                  { icon: <Award className="w-5 h-5" />, label: 'Quality' },
-                ].map(({ icon, label }) => (
-                  <div key={label} className="flex flex-col items-center">
-                    {icon}
+                  {icon: <Leaf className="w-5 h-5" />, label: 'Benefits',path:'/product/moringa/101' },
+                  { icon: <BookOpen className="w-5 h-5" />, label: 'Recipes',path:'/product/moringa/recipes' },
+                  { icon: <Map className="w-5 h-5" />, label: 'Traceability',path:'/product/moringa/farmer-details'  },
+                  { icon: <Award className="w-5 h-5" />, label: 'Quality',path:'/product/moringa/product-report' },
+                ].map(({ icon, label, path }) => (
+                
+                  <div key={label} className={`flex flex-col items-center ${ path===currentPath? 'text-green-500' : 'text-gray-600'}`}>
+                    <a href={path}> {icon}</a>
                     <span className="text-[10px] mt-0.5">{label}</span>
+                    
                   </div>
                 ))}
               </div>
