@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button"
 import { Label } from "../../components/ui/label"
 import { Checkbox } from "../../components/ui/checkbox"
 import { useNavigate } from "react-router-dom"
+import axios from 'axios';
 
 export default function Product() {
   const [products, setProducts] = useState([])
@@ -70,7 +71,6 @@ export default function Product() {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value)
   }
-
   const handleCategoryFilter = (category) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -79,19 +79,51 @@ export default function Product() {
         : [...prevFilters.category, category],
     }))
   }
-
   const handlePriceFilter = (min, max) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       price: { min, max },
     }))
   }
-
+  
   const handleSort = (value) => {
     setSortBy(value)
   }
-
+  
   const navigate = useNavigate()
+
+  const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+  const addToCart = async (productId) => {
+  try {
+    // Retrieve the token from cookies
+    const token = getCookie('jwtToken');
+
+    const response = await fetch('http://localhost:4000/api/v1/amrti/cart/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+      },
+      body: JSON.stringify({ productId })
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const result = await response.json();
+    console.log(result);
+    
+    // Handle the response data as needed
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+};
   
   if (isLoading) {
     return <div>Loading products...</div>
@@ -118,7 +150,6 @@ export default function Product() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button size="sm" variant="outline">
-                <ListOrderedIcon className="w-4 h-4 mr-2" />
                 Sort
               </Button>
             </DropdownMenuTrigger>
@@ -157,11 +188,10 @@ export default function Product() {
         <div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
-              <div
-                onClick={() => navigate(`/product/${product._id}`)}
+              <div 
+                // onClick={() => navigate(`/product/${product._id}`)}
                 key={product.id}
-                className="bg-background rounded-lg shadow-lg overflow-hidden"
-              >
+                className="bg-background rounded-lg shadow-lg overflow-hidden">
                 <img
                   src={product.imageUrl}
                   alt={product.title}
@@ -173,8 +203,7 @@ export default function Product() {
                   <h3 className="text-lg font-semibold">{product.title}</h3>
                   <div className="flex items-center justify-between mt-4">
                     <span className="text-primary font-semibold">${product.discountedPrice.toFixed(2)}</span>
-                    <Button size="sm" variant="outline">
-                      <ShoppingCartIcon className="w-4 h-4 mr-2" />
+                    <Button size="sm" variant="outline" onClick={() => addToCart(product._id)}>
                       Add to Cart
                     </Button>
                   </div>

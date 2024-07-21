@@ -1,5 +1,5 @@
 import React from 'react'
-import MainCarousel from '../components/Carousel/MainCarousel'
+import  MainCarousel  from '../components/Carousel/MainCarousel'
 import Testimonial from '../components/Testimonial/Testimonial'
 import Checkout from '../components/Checkout/Checkout'
 import { Values } from '../components/values/values'

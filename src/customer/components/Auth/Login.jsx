@@ -23,17 +23,48 @@ export default function LoginUserForm({ handleNext }) {
     if (auth.user || auth.error) setOpenSnackBar(true);
     
   }, [auth.user, auth.error]);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
 
-    const userData = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
-
-    dispatch(login(userData));
+  const userData = {
+    email: data.get("email"),
+    password: data.get("password"),
   };
+
+try {
+  const response = await fetch('http://localhost:4000/api/v1/amrti/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const result = await response.json();
+  console.log(result);
+
+  const token = result.token;
+  console.log(token);
+
+  // Set the JWT token in cookies
+  if (token) {
+    // Set the cookie with the token
+    document.cookie = `jwtToken=${token}; path=/; secure; samesite=strict`;
+    console.log("Token has been set in cookies");
+  }
+  
+  console.log(result); // Handle the response data as needed
+
+  // You might want to do something with the result here
+} catch (error) {
+  console.error('There was a problem with the fetch operation:', error);
+}
+  }
 
   return (
     <React.Fragment className=" shadow-lg ">
