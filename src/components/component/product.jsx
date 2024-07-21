@@ -24,14 +24,14 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 "use client"
-import { products } from "./Items"
+
 import { useState, useMemo } from "react"
-import { Input } from "../../components/ui/input"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "../../components/ui/dropdown-menu"
-import { Button } from "../../components/ui/button"
-import { Label } from "../../components/ui/label"
-import { Checkbox } from "../../components/ui/checkbox"
-// import Link from "next/link"
+import { Input } from "../ui/input"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem } from " ../ui/dropdown-menu"
+import { Button } from " ../ui/button"
+import { Label } from " ../ui/label"
+import { Checkbox } from " ../ui/checkbox"
+import Link from "next/link"
 
 export function Product() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -40,7 +40,62 @@ export function Product() {
     price: { min: 0, max: 1000 },
   })
   const [sortBy, setSortBy] = useState("featured")
-  
+  const products = [
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      description: "High-quality wireless headphones with noise cancellation",
+      price: 99.99,
+      category: "Electronics",
+      image: "/placeholder.svg",
+      featured: true,
+    },
+    {
+      id: 2,
+      name: "Leather Backpack",
+      description: "Durable and stylish leather backpack",
+      price: 79.99,
+      category: "Bags",
+      image: "/placeholder.svg",
+      featured: false,
+    },
+    {
+      id: 3,
+      name: "Outdoor Jacket",
+      description: "Waterproof and breathable outdoor jacket",
+      price: 149.99,
+      category: "Clothing",
+      image: "/placeholder.svg",
+      featured: true,
+    },
+    {
+      id: 4,
+      name: "Fitness Tracker",
+      description: "Advanced fitness tracker with heart rate monitoring",
+      price: 59.99,
+      category: "Electronics",
+      image: "/placeholder.svg",
+      featured: false,
+    },
+    {
+      id: 5,
+      name: "Ceramic Mug",
+      description: "Handcrafted ceramic mug with unique design",
+      price: 24.99,
+      category: "Home",
+      image: "/placeholder.svg",
+      featured: true,
+    },
+    {
+      id: 6,
+      name: "Leather Wallet",
+      description: "Minimalist leather wallet with RFID protection",
+      price: 39.99,
+      category: "Accessories",
+      image: "/placeholder.svg",
+      featured: false,
+    },
+  ]
   const filteredProducts = useMemo(() => {
     return products
       .filter((product) => {
@@ -88,7 +143,7 @@ export function Product() {
     setSortBy(value)
   }
   return (
-    (<div className="container mx-auto mt-12 px-4 md:px-6 py-8">
+    (<div className="container mx-auto px-4 md:px-6 py-8">
       <div
         className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
         <div className="relative flex-1">
@@ -102,8 +157,8 @@ export function Product() {
             className="w-full pl-10 pr-4 py-2 rounded-lg bg-muted" />
         </div>
         <div className="flex items-center gap-4">
-          {/* <DropdownMenu> */}
-            {/* <DropdownMenuTrigger asChild>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
               <Button size="sm" variant="outline">
                 <FilterIcon className="w-4 h-4 mr-2" />
                 Filters
@@ -130,7 +185,7 @@ export function Product() {
                 </div>
               </DropdownMenuContent>
             </DropdownMenuContent>
-          </DropdownMenu> */}
+          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button size="sm" variant="outline">
@@ -167,14 +222,14 @@ export function Product() {
                 ))}
               </div>
             </div>
-            {/* <div>
+            <div>
               <h4 className="text-base font-medium mb-2">Price Range</h4>
               <div className="w-full" />
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>${filters.price.min}</span>
                 <span>${filters.price.max}</span>
-              </div> */}
-            {/* </div> */}
+              </div>
+            </div>
           </div>
         </div>
         <div>
@@ -183,7 +238,7 @@ export function Product() {
               <div
                 key={product.id}
                 className="bg-background rounded-lg shadow-lg overflow-hidden">
-                <a href="#" prefetch={false}>
+                <Link href="#" prefetch={false}>
                   <img
                     src="/placeholder.svg"
                     alt={product.name}
@@ -201,7 +256,7 @@ export function Product() {
                       </Button>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -214,7 +269,7 @@ export function Product() {
             <div
               key={product.id}
               className="bg-background rounded-lg shadow-lg overflow-hidden">
-              <a href="#" prefetch={false}>
+              <Link href="#" prefetch={false}>
                 <img
                   src="/placeholder.svg"
                   alt={product.name}
@@ -232,7 +287,7 @@ export function Product() {
                     </Button>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
@@ -344,4 +399,3 @@ function XIcon(props) {
     </svg>)
   );
 }
-
