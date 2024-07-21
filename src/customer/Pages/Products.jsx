@@ -103,7 +103,7 @@ export default function Product() {
     // Retrieve the token from cookies
     const token = getCookie('jwtToken');
 
-    const response = await fetch('http://localhost:4000/api/v1/amrti/cart/add', {
+    const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/cart/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ export default function RegisterUserForm() {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/amrti/users/signup", {
+      const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

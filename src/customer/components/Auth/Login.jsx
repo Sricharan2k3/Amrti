@@ -33,7 +33,7 @@ export default function LoginUserForm({ handleNext }) {
   };
 
 try {
-  const response = await fetch('http://localhost:4000/api/v1/amrti/users/login', {
+  const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
