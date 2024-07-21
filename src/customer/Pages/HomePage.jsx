@@ -11,11 +11,18 @@ import './Home.css'
 import Story from '../components/vision/Storyy'
 import Compare from './Compare'
 import Report from './Report'
+
+
 const HomePage = () => {
+  const slides = ["https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-1.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-2.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti.jpg"];
   return (
-    <div>
-      <MainCarousel className="car" />
+    <div className="overflow-hidden mt-16" >
+      <MainCarousel autoSlide={true}>
+        {[...slides.map((s) => <img className='w-[1560px] h-[680px]' src={s} key={s} />)]}
+      </MainCarousel>
+      {/* <MainCarousel className="car" /> */}
       <div style={{ background: "white", margin: "0", padding: "0" }}>
+      
         <Mission />
         <Vision />
       </div>
