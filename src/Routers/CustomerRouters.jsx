@@ -9,7 +9,7 @@ import Order from "../customer/components/Order/Order";
 import Footer from "../customer/components/Footer/Footer";
 import Checkout from "../customer/components/Checkout/Checkout";
 import { About } from "../customer/Pages/About";
-import { Product } from "../customer/Pages/Products";
+import  Product  from "../customer/Pages/Products";
 
 import { Faq } from "../customer/Pages/FAQ";
 import TnC from "../customer/Pages/TnC";
