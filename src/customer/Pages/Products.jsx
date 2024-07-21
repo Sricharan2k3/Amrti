@@ -34,7 +34,7 @@ import { Checkbox } from "../../components/ui/checkbox"
 import { useNavigate } from "react-router-dom"
 // import Link from "next/link"
 
-export function Product() {
+export default function Product() {
   const [searchTerm, setSearchTerm] = useState("")
   const [filters, setFilters] = useState({
     category: [],
