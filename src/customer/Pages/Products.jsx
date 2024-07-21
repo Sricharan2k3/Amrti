@@ -23,7 +23,7 @@ export default function Product() {
       try {
         setIsLoading(true)
         const response = await fetch(
-          "http://amrti-main-backend.vercel.app/api/v1/amrti/products/getall"
+          "https://amrti-main-backend.vercel.app/api/v1/amrti/products/getall"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
