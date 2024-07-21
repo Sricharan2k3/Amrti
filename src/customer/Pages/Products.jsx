@@ -31,6 +31,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import { Button } from "../../components/ui/button"
 import { Label } from "../../components/ui/label"
 import { Checkbox } from "../../components/ui/checkbox"
+import { useNavigate } from "react-router-dom"
 // import Link from "next/link"
 
 export function Product() {
@@ -42,13 +43,15 @@ export function Product() {
   const [sortBy, setSortBy] = useState("featured")
   
   const filteredProducts = useMemo(() => {
-    return products
+    console.log(products.data[0])
+    return products.data
       .filter((product) => {
+        console.log(product.title)
         const searchMatch =
-          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchTerm.toLowerCase())
+          product.title.toLowerCase().includes(searchTerm.toLowerCase()) 
+          // product.description.toLowerCase().includes(searchTerm.toLowerCase())
         const categoryMatch = filters.category.length === 0 || filters.category.includes(product.category)
-        const priceMatch = product.price >= filters.price.min && product.price <= filters.price.max
+        const priceMatch = product.discountedPrice >= filters.price.min && product.discountedPrice <= filters.price.max
         return searchMatch && categoryMatch && priceMatch
       })
       .sort((a, b) => {
@@ -65,7 +68,7 @@ export function Product() {
       });
   }, [searchTerm, filters, sortBy])
   const featuredProducts = useMemo(() => {
-    return products.filter((product) => product.featured);
+    return products.data.filter((product) => product.featured);
   }, [products])
   const handleSearch = (e) => {
     setSearchTerm(e.target.value)
@@ -87,6 +90,8 @@ export function Product() {
   const handleSort = (value) => {
     setSortBy(value)
   }
+  const navigate=useNavigate()
+  
   return (
     (<div className="container mx-auto mt-12 px-4 md:px-6 py-8">
       <div
@@ -157,7 +162,7 @@ export function Product() {
             <div>
               <h4 className="text-base font-medium mb-2">Category</h4>
               <div className="grid gap-2">
-                {["Electronics", "Bags", "Clothing", "Home", "Accessories"].map((category) => (
+                {["Powders","Kombucha"].map((category) => (
                   <Label key={category} className="flex items-center gap-2 font-normal">
                     <Checkbox
                       checked={filters.category.includes(category)}
@@ -180,52 +185,52 @@ export function Product() {
         <div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
-              <div
+             <div onClick={() => navigate(`/product/${product._id}`)}
+
                 key={product.id}
                 className="bg-background rounded-lg shadow-lg overflow-hidden">
-                <a href="#" prefetch={false}>
+                {/* <a href="#" prefetch={false}> */}
                   <img
-                    src="/placeholder.svg"
-                    alt={product.name}
+src={product.imageUrl}                    alt={product.title}
                     width={400}
                     height={400}
                     className="w-full h-48 object-cover" />
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold">{product.name}</h3>
-                    <p className="text-muted-foreground">{product.description}</p>
+                    <h3 className="text-lg font-semibold">{product.title}</h3>
+                    {/* <p className="text-muted-foreground">{product.description}</p> */}
                     <div className="flex items-center justify-between mt-4">
-                      <span className="text-primary font-semibold">${product.price.toFixed(2)}</span>
+                      <span className="text-primary font-semibold">${product.discountedPrice.toFixed(2)}</span>
                       <Button size="sm" variant="outline">
                         <ShoppingCartIcon className="w-4 h-4 mr-2" />
                         Add to Cart
                       </Button>
                     </div>
                   </div>
-                </a>
+                {/* </a> */}
               </div>
             ))}
           </div>
         </div>
       </div>
       <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Featured Products</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* <h2 className="text-2xl font-semibold mb-4">Featured Products</h2> */}
+        {/* <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"> */}
           {featuredProducts.map((product) => (
             <div
               key={product.id}
               className="bg-background rounded-lg shadow-lg overflow-hidden">
               <a href="#" prefetch={false}>
                 <img
-                  src="/placeholder.svg"
-                  alt={product.name}
+                  src={product.imageUrl}
+                  alt={product.title}
                   width={400}
                   height={400}
                   className="w-full h-48 object-cover" />
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold">{product.name}</h3>
-                  <p className="text-muted-foreground">{product.description}</p>
+                  <h3 className="text-lg font-semibold">{product.title}</h3>
+                  {/* <p className="text-muted-foreground">{product.description}</p> */}
                   <div className="flex items-center justify-between mt-4">
-                    <span className="text-primary font-semibold">${product.price.toFixed(2)}</span>
+                    <span className="text-primary font-semibold">${product.discountedPrice.toFixed(2)}</span>
                     <Button size="sm" variant="outline">
                       <ShoppingCartIcon className="w-4 h-4 mr-2" />
                       Add to Cart
@@ -235,7 +240,7 @@ export function Product() {
               </a>
             </div>
           ))}
-        </div>
+        {/* </div> */}
       </div>
     </div>)
   );

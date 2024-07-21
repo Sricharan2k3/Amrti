@@ -1,56 +1,19 @@
-export const products = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    description: "High-quality wireless headphones with noise cancellation",
-    price: 99.99,
-    category: "Electronics",
-    image: "/placeholder.svg",
-    featured: true,
-  },
-  {
-    id: 2,
-    name: "Leather Backpack",
-    description: "Durable and stylish leather backpack",
-    price: 79.99,
-    category: "Bags",
-    image: "/placeholder.svg",
-    featured: false,
-  },
-  {
-    id: 3,
-    name: "Outdoor Jacket",
-    description: "Waterproof and breathable outdoor jacket",
-    price: 149.99,
-    category: "Clothing",
-    image: "/placeholder.svg",
-    featured: true,
-  },
-  {
-    id: 4,
-    name: "Fitness Tracker",
-    description: "Advanced fitness tracker with heart rate monitoring",
-    price: 59.99,
-    category: "Electronics",
-    image: "/placeholder.svg",
-    featured: false,
-  },
-  {
-    id: 5,
-    name: "Ceramic Mug",
-    description: "Handcrafted ceramic mug with unique design",
-    price: 24.99,
-    category: "Home",
-    image: "/placeholder.svg",
-    featured: true,
-  },
-  {
-    id: 6,
-    name: "Leather Wallet",
-    description: "Minimalist leather wallet with RFID protection",
-    price: 39.99,
-    category: "Accessories",
-    image: "/placeholder.svg",
-    featured: false,
-  },
-];
+async function fetchProducts() {
+  try {
+    const response = await fetch(
+      "http://amrti-main-backend.vercel.app/api/v1/amrti/products/getall"
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const products = await response.json();
+    console.log(products);
+    return products;
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    return [];
+  }
+}
+
+export const products = await fetchProducts();
