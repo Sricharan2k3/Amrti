@@ -36,6 +36,10 @@ import MoringaReport from "../customer/reports/MoringaReport"
 import MoringaRecipeCategories from "../customer/reports/MoringaRecipe";
 import MoringaFarmerDetails from "../customer/reports/MoringaTraceability";
 import MoringaReportViewer from "../customer/reports/MoringaTest";
+import EasyToUse from "../customer/reports/MoringaEasy";
+import Beverage from "../customer/reports/MoringaTea";
+import Smoothie from "../customer/reports/MoringaSmoothie";
+import Food from "../customer/reports/MoringaFood";
 const CustomerRouters = () => {
   return (
     <div>
@@ -44,7 +48,11 @@ const CustomerRouters = () => {
       <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
       <Route path="/product/moringa/recipes" element={<MoringaRecipeCategories/>}></Route>
       <Route path="/product/moringa/farmer-details" element={<MoringaFarmerDetails/>}></Route>
-      <Route path="/product/moringa/product-report" element={<MoringaReportViewer driveLink={"https://drive.google.com/file/d/1jgdFQWdurlhx6URjlSZvTxCz-PDCp1ru/preview"}/>}></Route>
+      <Route path="/product/moringa/product-report" element={<MoringaReportViewer driveLink={"https://drive.google.com/file/d/1cJZtTmaSuZpT6SLJZC0TL2D0GZet7I2l/view?usp=sharing"}/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use" element={<EasyToUse/>}></Route>
+      <Route path="/product/moringa/recipes/beverage" element={<Beverage/>}></Route>
+      <Route path="/product/moringa/recipes/smoothie" element={<Smoothie/>}></Route>
+      <Route path="/product/moringa/recipes/food" element={<Food/>}></Route>
       </Routes>
       </div>
       <div className="nav">

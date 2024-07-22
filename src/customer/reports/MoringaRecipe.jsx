@@ -6,10 +6,10 @@ import { useLocation } from 'react-router-dom';
 
 const MoringaRecipeCategories = () => {
   const categories = [
-    { title: 'Easy to make Recepies', image: 'IMAGE' },
-    { title: 'Moringa Tea Recepies', image: 'IMAGE' },
-    { title: 'Blends and Shakes', image: 'IMAGE' },
-    { title: 'Food Recepies', image: 'IMAGE' },
+    { title: 'Easy to make Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-3.png', url:"/product/moringa/recipes/easy-to-use" },
+    { title: 'Moringa Tea Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-2.png', url:"/product/moringa/recipes/beverage" },
+    { title: 'Blends and Shakes', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed.png',url:"/product/moringa/recipes/smoothie" },
+    { title: 'Food Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-1.png',url:"/product/moringa/recipes/food" },
   ];
   const location = useLocation();
   const currentPath = location.pathname;
@@ -28,7 +28,7 @@ const MoringaRecipeCategories = () => {
         {categories.map((category, index) => (
           <div key={index} className="flex flex-col">
             <div className="bg-gray-300 aspect-video mb-2 flex items-center justify-center text-gray-600">
-              {category.image}
+              <a href={category.url}><img src={category.image} alt="" /></a>
             </div>
             <div className="bg-orange-200 p-2 h-auto text-center text-sm">
               {category.title}
@@ -48,21 +48,22 @@ const MoringaRecipeCategories = () => {
         </div>
       ))}
     </div> */}
-  <div className=" flex fixed bottom-0 w-full justify-around py-2 bg-green-50">
-                {[
-                  {icon: <Leaf className="w-5 h-5" />, label: 'Benefits',path:'/product/moringa/101' },
-                  { icon: <BookOpen className="w-5 h-5" />, label: 'Recipes',path:'/product/moringa/recipes' },
-                  { icon: <Map className="w-5 h-5" />, label: 'Traceability',path:'/product/moringa/farmer-details'  },
-                  { icon: <Award className="w-5 h-5" />, label: 'Quality',path:'/product/moringa/product-report' },
-                ].map(({ icon, label, path }) => (
-                
-                  <div key={label} className={`flex flex-col items-center ${path===currentPath ? 'text-green-500' : 'text-gray-600'}`}>
-                    <a href={path}> {icon}</a>
-                    <span className="text-[10px] mt-0.5">{label}</span>
-                    
-                  </div>
-                ))}
-              </div>
+  <div className="flex fixed bottom-0 w-full justify-around py-2 bg-white">
+      {[
+        {icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/kindness.png' alt='' className="w-5 h-5" />, label: 'Benefits', path:'/product/moringa/101' },
+        { icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/cookbook.png' alt='' className="w-5 h-5" />, label: 'Recipes', path:'/product/moringa/recipes' },
+        { icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/traceability.png' alt='' className="w-5 h-5" />, label: 'Traceability', path:'/product/moringa/farmer-details' },
+        { icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Quality.png' alt='' className="w-5 h-5" />, label: 'Quality', path:'/product/moringa/product-report' },
+      ].map(({ icon, label, path }) => (
+        <div 
+          key={label} 
+          className={`flex flex-col items-center justify-center p-2 rounded-md cursor-pointer ${path === currentPath ? 'bg-green-100' : 'bg-white'}`}
+        >
+          <a href={path}>{icon}</a>
+          <span className="text-[10px] mt-0.5 text-gray-600">{label}</span>
+        </div>
+      ))}
+    </div>
   </div>
   );
 };
