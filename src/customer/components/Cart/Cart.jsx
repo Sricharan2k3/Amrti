@@ -136,6 +136,54 @@ const handleRemoveItem = async (id,productId) => {
   }
 };
 
+
+const handleProductRemove = async (id,productId) => {
+  if (!token) {
+    console.error("No token found");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/cart/removeproduct", {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ productId })
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update cart");
+    }
+
+    const data = await response.json();
+    console.log(data)
+
+const fetchedCart = data.cart.items.map(item => ({
+
+
+          
+          id: item._id,
+          name: item.title, // Assuming you'll replace this with the actual product name fetched from another endpoint or database
+          price: item.price, // Assuming price is in cents
+          image: "/placeholder.svg", // Placeholder for the product image
+          quantity: item.quantity,
+          imageUrl: extractImageUrl(item.image),
+          productId:item.productId
+     }))
+
+      setCart(fetchedCart)
+        setTotal(data.cart.totalPrice )
+
+
+    
+
+  } catch (error) {
+    console.error("Error updating cart:", error);
+  }
+};
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-24">
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
@@ -167,7 +215,7 @@ const handleRemoveItem = async (id,productId) => {
                 <Button variant="outline" size="icon" onClick={() => handleQuantityChange(item.id,item.productId)}>
                   <PlusIcon className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" size="icon" onClick={() => handleRemoveItem(item.id,item.productId)}>
+                <Button variant="outline" size="icon" onClick={() => handleProductRemove(item.id,item.productId)}>
                   <XIcon className="w-4 h-4" />
                 </Button>
               </div>
