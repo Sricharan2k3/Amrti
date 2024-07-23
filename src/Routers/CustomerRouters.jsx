@@ -40,6 +40,15 @@ import EasyToUse from "../customer/reports/MoringaEasy";
 import Beverage from "../customer/reports/MoringaTea";
 import Smoothie from "../customer/reports/MoringaSmoothie";
 import Food from "../customer/reports/MoringaFood";
+import MoringaLemon from "../customer/reports/MoringaLemon"
+import MoringaIce from "../customer/reports/MoringaIceTea";
+import MoringaNormal from "../customer/reports/MoringaNormalTea";
+import MoringaLeafAlmondSmoothie from "../customer/reports/MoringaAlmond";
+import MoringaLeafBananaSmoothie from "../customer/reports/MoringaBanana";
+import MoringaAvocadoToast from "../customer/reports/MoringaToast";
+import MoringaChutneyRice from "../customer/reports/MoringaRice";
+import MoringaUttapam from "../customer/reports/MoringaUttapam";
+
 const CustomerRouters = () => {
   return (
     <div>
@@ -53,6 +62,17 @@ const CustomerRouters = () => {
       <Route path="/product/moringa/recipes/beverage" element={<Beverage/>}></Route>
       <Route path="/product/moringa/recipes/smoothie" element={<Smoothie/>}></Route>
       <Route path="/product/moringa/recipes/food" element={<Food/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-lemon-water" element={<MoringaLemon/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-ice-tea" element={<MoringaIce/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-Normal-tea" element={<MoringaNormal/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-banana-smoothie" element={<MoringaLeafBananaSmoothie/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-almond-smoothie" element={<MoringaLeafAlmondSmoothie/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-uttapam" element={<MoringaUttapam/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-rice" element={<MoringaChutneyRice/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-toast" element={<MoringaAvocadoToast/>}></Route>
+
+
+
       </Routes>
       </div>
       <div className="nav">

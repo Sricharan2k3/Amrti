@@ -1,38 +1,40 @@
 import React from 'react';
-import { Video, Leaf, BookOpen, Map, Award } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
-const Beverage = () => {
-  const categories = [
-    { title: 'Moringa Iced Tea', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-5.png',url:"/product/moringa/recipes/easy-to-use/moringa-ice-tea" },
-    { title: 'Moringa Tea', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/tea-moringa-scaled.jpg,',url:"/product/moringa/recipes/easy-to-use/moringa-normal-tea" },
-  ];
-  
+const RecipeDetailPage = ({ recipe }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const isRecipesActive = currentPath.startsWith('/product/moringa/recipes') || 
-                          currentPath.startsWith('/products/moringa/recipes');
+  const isRecipesActive = currentPath.includes('/product/moringa/recipes') || 
+                          currentPath.includes('/products/moringa/recipes');
 
   return (
-    <div className="flex flex-col h-auto w-auto mt-16 bg-gray-100">
-      <div className="flex-1 p-4 overflow-y-auto">
-        <div className="grid grid-cols-2 gap-4">
-          {categories.map((category, index) => (
-            <div key={index} className="flex flex-col">
-              <div className="bg-gray-300 aspect-video  mb-2 flex items-center justify-center text-gray-600">
-               <a href={category.url}><img src={category.image} className='h-[145px] w-[172px]' alt="" /></a> 
-              </div>
-              <div className="bg-orange-200 p-2  h-auto text-center text-sm">
-                {category.title}
-              </div>
-            </div>
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <div className="flex-1 p-4 pb-16 overflow-y-auto">
+        <h1 className=" mt-16 text-2xl font-bold mb-4">{recipe.title}</h1>
+        
+        <img 
+          src={recipe.image} 
+          alt={recipe.title} 
+          className="w-full h-48 object-cover rounded-lg mb-4"
+        />
+        
+        <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
+        <ul className="list-disc pl-5 mb-4">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
           ))}
-        </div>
+        </ul>
+        
+        <h2 className="text-xl font-semibold mb-2">Instructions</h2>
+        <ol className="list-decimal pl-5 mb-4">
+          {recipe.instructions.map((step, index) => (
+            <li key={index} className="mb-2">{step}</li>
+          ))}
+        </ol>
       </div>
-      <div className="h-60">
-      </div>
-      <div className="flex fixed bottom-0 w-full justify-around py-2 bg-white">
+      
+      <div className="flex fixed bottom-0 w-full justify-around py-2 bg-white border-t border-gray-200">
         {[
           {icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/kindness.png' alt='' className="w-5 h-5" />, label: 'Benefits', path:'/product/moringa/101' },
           { icon: <img src='https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/cookbook.png' alt='' className="w-5 h-5" />, label: 'Recipes', path:'/product/moringa/recipes' },
@@ -56,4 +58,4 @@ const Beverage = () => {
   );
 };
 
-export default Beverage;
+export default RecipeDetailPage;

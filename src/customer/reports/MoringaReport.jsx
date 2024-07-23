@@ -23,7 +23,15 @@ const MoringaReport=()=>{
         
               {/* Video placeholder */}
               <div className="bg-gray-200 h-64 mt-16 flex items-center justify-center">
-                <span className="text-gray-600 text-sm">Moringa Video</span>
+              <iframe
+          className="absolute overflow-hidden h-[250px] w-full  "
+   src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/MORINGA-LAUNCH-VIDEO-new.mp4"
+          title="Full Screen Video"
+         
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+                {/* <span className="text-gray-600 text-sm">Moringa Video</span> */}
               </div>
         
               {/* Benefits section */}
@@ -60,9 +68,9 @@ const MoringaReport=()=>{
               {/* Product images */}
               <div className="flex justify-around p-3">
                 
-                  <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/spinach-pouch-1.png" alt=""  className="w-20 h-20 object-cover" />
-                  <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/beetroot-pouch-1.png" alt=""  className="w-20 h-20 object-cover" />
-                  <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/amla-JAR-1.png" alt=""  className="w-20 h-20 object-cover" />
+              <a href="/product/65cb3d21dcfb76224065c5c8"><img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/spinach-pouch-1.png" alt=""  className="w-20 h-20 object-cover" /></a>
+              <a href="/product/65cb4006dcfb76224065c7c4"> <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/beetroot-pouch-1.png" alt=""  className="w-20 h-20 object-cover" /></a>
+              <a href="/product/6694bf76da8c2b2bddf64753">  <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/amla-JAR-1.png" alt=""  className="w-20 h-20 object-cover" /></a>
 
 
               

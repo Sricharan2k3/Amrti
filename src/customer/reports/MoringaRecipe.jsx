@@ -6,10 +6,10 @@ import { useLocation } from 'react-router-dom';
 
 const MoringaRecipeCategories = () => {
   const categories = [
-    { title: 'Easy to make Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-3.png', url:"/product/moringa/recipes/easy-to-use" },
-    { title: 'Moringa Tea Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-2.png', url:"/product/moringa/recipes/beverage" },
-    { title: 'Blends and Shakes', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed.png',url:"/product/moringa/recipes/smoothie" },
-    { title: 'Food Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-1.png',url:"/product/moringa/recipes/food" },
+    { title: 'Easy to make Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/tea-moringa-scaled.jpg', url:"/product/moringa/recipes/easy-to-use" },
+    { title: 'Beverages', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/moringa-smoothie-scaled.jpg', url:"/product/moringa/recipes/beverage" },
+    { title: 'Desserts', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/moringa-dessert-scaled.jpg',url:"/product/moringa/recipes/smoothie" },
+    { title: 'Food Recepies', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/dosa-moringa-1-scaled.jpg',url:"/product/moringa/recipes/food" },
   ];
   const location = useLocation();
   const currentPath = location.pathname;

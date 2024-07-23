@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 const EasyToUse = () => {
   const categories = [
-    { title: 'Moringa Lemon Water', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-4.png' },
+    { title: 'Moringa Lemon Water', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-4.png',url:"/product/moringa/recipes/easy-to-use/moringa-lemon-water" },
   ];
   
   const location = useLocation();
@@ -20,7 +20,7 @@ const EasyToUse = () => {
           {categories.map((category, index) => (
             <div key={index} className="flex flex-col">
               <div className="bg-gray-300 aspect-video mb-2  flex items-center justify-center text-gray-600">
-                <img src={category.image} className='h-[175px] w-[172px]' alt="" />
+                <a href={category.url}><img src={category.image} className='h-[175px] w-[172px]' alt="" /></a>
               </div>
               <div className="bg-orange-200  p-2 h-auto text-center text-sm">
                 {category.title}

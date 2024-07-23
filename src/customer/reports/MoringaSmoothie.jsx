@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 const Smoothie = () => {
   const categories = [
-    { title: 'Moringa leaf Almond Smoothie', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-6.png' },
-    { title: 'Moringa Leaf Banana Smoothie', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-7.png' },
+    { title: 'Moringa leaf Almond Smoothie', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-6.png',url:"/product/moringa/recipes/easy-to-use/moringa-almond-smoothie" },
+    { title: 'Moringa Leaf Banana Smoothie', image: 'https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/unnamed-7.png',url:"/product/moringa/recipes/easy-to-use/moringa-banana-smoothie" },
   ];
   
   const location = useLocation();
@@ -21,7 +21,7 @@ const Smoothie = () => {
           {categories.map((category, index) => (
             <div key={index} className="flex flex-col">
               <div className="bg-gray-300 aspect-video mb-2 flex items-center justify-center text-gray-600">
-                <img src={category.image} className='h-[175px] w-[172px]' alt="" />
+                <a href={category.url}><img src={category.image} className='h-[175px] w-[172px]' alt="" /></a>
               </div>
               <div className="bg-orange-200 p-2 h-auto text-center text-sm">
                 {category.title}
