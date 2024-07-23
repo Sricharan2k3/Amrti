@@ -88,7 +88,7 @@ export default function Navigation() {
       const decodedToken = decodeJWT(token);
       setUserRole(decodedToken.role);
       setUserName(decodedToken.name || "User");
-      fetchCartItemCount(token);
+      // fetchCartItemCount(token);
     }
   }, []);
 
@@ -132,21 +132,38 @@ export default function Navigation() {
     }
   };
 
-  const fetchCartItemCount = async (token) => {
-    try {
-      const response = await fetch('https://your-api-url.com/cart', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setCartItemCount(data.totalItems);
+  const token = getCookie('jwtToken');
+  
+
+  useEffect(() => {
+    async function fetchCart() {
+    
+      if (!token) {
+        console.error("No token found")
+        return
       }
-    } catch (error) {
-      console.error("Error fetching cart data", error);
+
+      try {
+        const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/cart/getCart", {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        if (!response.ok) {
+          throw new Error("Failed to fetch cart data")
+        }
+        const data = await response.json()
+        console.log(data)
+        setCartItemCount(data.data.cart.totalItem)
+      
+        // Assuming totalPrice is in cents
+      } catch (error) {
+        console.error("Error fetching cart:", error)
+      }
     }
-  };
+
+    fetchCart()
+  }, [])
 
   return (
     <div style={{ backgroundColor: "#f9f1e1" }}>
