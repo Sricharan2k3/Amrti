@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 const Footer = () => {
-   const [activeCategory, setActiveCategory] = useState("Oils");
+   const [activeCategory, setActiveCategory] = useState("Kombucha");
 
   const categories = {
-    Oils: [
-      { name: "Safflower", link: "/product/65b4e0f56d5fdf8013a98d53" },
-      { name: "Sesame", link: "/product/65b0b2ec84905519fd15883b" },
-      { name: "Sunflower", link: "/product/65cb4006dcfb76224065c7c4" },
-      { name: "GroundNut", link: "/product/65cb37b3dcfb76224065c17e" },
-      { name: "Mustard", link: "/product/65cb3d21dcfb76224065c5c8" },
-    ],
+    
     Kombucha: [
       { name: "Pomegranate", link: "/product/65c4b7f5dcfb762240655c67" },
       { name: "Mint Mojito", link: "/product/65c4b8e2dcfb762240656117" },
@@ -17,11 +11,18 @@ const Footer = () => {
       { name: "Lemon", link: "/product/65c4b974dcfb7622406561ac" },
       { name: "Ginger", link: "/product/65c4a934dcfb762240654f78" },
     ],
-    Spices: [{ name: "Turmeric", link: "/product/65e8567763429a82a0a1f804" }],
-    Staples: [
-      { name: "Rajma", link: "/product/65eeff7163429a82a0a20628" },
-      { name: "GroundNut", link: "/product/65eefa2963429a82a0a20489" },
+    Powders: [
+      { name: "Turmeric Powder", href: "/product/65b4e0f56d5fdf8013a98d53" },
+            { name: "Moringa Powder", href: "/product/65b0b2ec84905519fd15883b" },
+            { name: "Papaya Powder", href: "/product/65cb37b3dcfb76224065c17e" },
+            { name: "Beetroot Powder", href: "/product/65cb4006dcfb76224065c7c4" },
+            { name: "Spinach Powder", href: "/product/65cb3d21dcfb76224065c5c8" },
+            { name: "Amla Powder", href: "/product/6694bf76da8c2b2bddf64753" },
+            { name: "Tomato Powder", href: "/product/6694c2ccda8c2b2bddf64754" },
+
     ],
+
+    
   };
   return (
     <div id="footer">

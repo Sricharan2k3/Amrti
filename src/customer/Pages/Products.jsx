@@ -1,28 +1,30 @@
-"use client"
-import { useState, useMemo, useEffect } from "react"
-import { Input } from "../../components/ui/input"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "../../components/ui/dropdown-menu"
-import { Button } from "../../components/ui/button"
-import { Label } from "../../components/ui/label"
-import { Checkbox } from "../../components/ui/checkbox"
-import { useNavigate } from "react-router-dom"
+"use client";
+import { useState, useMemo, useEffect } from "react";
+import { Input } from "../../components/ui/input";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "../../components/ui/dropdown-menu";
+import { Button } from "../../components/ui/button";
+import { Label } from "../../components/ui/label";
+import { Checkbox } from "../../components/ui/checkbox";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Product() {
-  const [products, setProducts] = useState([])
-  const [searchTerm, setSearchTerm] = useState("")
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
     category: [],
     price: { min: 0, max: 1000 },
-  })
-  const [sortBy, setSortBy] = useState("featured")
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  
+  });
+  const [sortBy, setSortBy] = useState("featured");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function fetchProducts() {
       try {
-        setIsLoading(true)
+        setIsLoading(true);
         const response = await fetch(
           "https://amrti-main-backend.vercel.app/api/v1/amrti/products/getall"
         );
@@ -31,11 +33,11 @@ export default function Product() {
         }
         const fetchedProducts = await response.json();
         setProducts(fetchedProducts.data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch products:", error);
-        setError("Failed to load products. Please try again later.")
-        setIsLoading(false)
+        setError("Failed to load products. Please try again later.");
+        setIsLoading(false);
       }
     }
     fetchProducts();
@@ -45,96 +47,100 @@ export default function Product() {
     return products
       .filter((product) => {
         const searchMatch =
-          product.title.toLowerCase().includes(searchTerm.toLowerCase()) 
-        const categoryMatch = filters.category.length === 0 || filters.category.includes(product.category)
-        const priceMatch = product.discountedPrice >= filters.price.min && product.discountedPrice <= filters.price.max
-        return searchMatch && categoryMatch && priceMatch
+          product.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const categoryMatch = filters.category.length === 0 || filters.category.includes(product.category);
+        const priceMatch = product.discountedPrice >= filters.price.min && product.discountedPrice <= filters.price.max;
+        return searchMatch && categoryMatch && priceMatch;
       })
       .sort((a, b) => {
         switch (sortBy) {
           case "featured":
-            return b.featured - a.featured
+            return b.featured - a.featured;
           case "price-asc":
-            return a.price - b.price
+            return a.price - b.price;
           case "price-desc":
-            return b.price - a.price
+            return b.price - a.price;
           default:
-            return 0
+            return 0;
         }
       });
-  }, [products, searchTerm, filters, sortBy])
+  }, [products, searchTerm, filters, sortBy]);
 
   const featuredProducts = useMemo(() => {
     return products.filter((product) => product.featured);
-  }, [products])
+  }, [products]);
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
   const handleCategoryFilter = (category) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       category: prevFilters.category.includes(category)
         ? prevFilters.category.filter((c) => c !== category)
         : [...prevFilters.category, category],
-    }))
-  }
+    }));
+  };
   const handlePriceFilter = (min, max) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       price: { min, max },
-    }))
-  }
-  
+    }));
+  };
+
   const handleSort = (value) => {
-    setSortBy(value)
-  }
-  
-  const navigate = useNavigate()
+    setSortBy(value);
+  };
+
+  const navigate = useNavigate();
 
   const getCookie = (name) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-};
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  };
 
   const addToCart = async (productId) => {
-  try {
-    // Retrieve the token from cookies
-    const token = getCookie('jwtToken');
+    try {
+      // Retrieve the token from cookies
+      const token = getCookie('jwtToken');
 
-    const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
-      },
-      body: JSON.stringify({ productId })
-    });
+      const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        },
+        body: JSON.stringify({ productId })
+      });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log(result);
+
+      // Show success notification
+      toast.success('Product added to cart successfully!');
+
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      toast.error('Failed to add product to cart.');
     }
+  };
 
-    const result = await response.json();
-    console.log(result);
-    
-    // Handle the response data as needed
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
-  
   if (isLoading) {
-    return <div>Loading products...</div>
+    return <div>Loading products...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>
+    return <div>{error}</div>;
   }
 
   return (
     <div className="container mx-auto mt-12 px-4 md:px-6 py-8">
+      <ToastContainer />
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
         <div className="relative flex-1">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
@@ -189,20 +195,23 @@ export default function Product() {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
               <div 
-                // onClick={() => navigate(`/product/${product._id}`)}
                 key={product.id}
                 className="bg-background rounded-lg shadow-lg overflow-hidden">
-                <img
-                  src={product.imageUrl}
-                  alt={product.title}
-                  width={400}
-                  height={400}
-                  className="w-full h-48 object-cover"
-                />
+                <a href={`/product/${product._id}`}>
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    width={400}
+                    height={400}
+                    className="w-full h-48 object-cover"
+                  />
+                </a>
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold">{product.title}</h3>
+                  <a href={`/product/${product._id}`}>
+                    <h3 className="text-lg font-semibold">{product.title}</h3>
+                  </a>
                   <div className="flex items-center justify-between mt-4">
-                    <span className="text-primary font-semibold">${product.discountedPrice.toFixed(2)}</span>
+                    <span className="text-primary font-semibold">{product.discountedPrice.toFixed(2)}</span>
                     <Button size="sm" variant="outline" onClick={() => addToCart(product._id)}>
                       Add to Cart
                     </Button>

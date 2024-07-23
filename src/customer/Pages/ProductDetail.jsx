@@ -167,10 +167,10 @@ export default function ProductDetail() {
 
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
                 <p className="opacity-50 line-through">
-                  &#8377;{customersProduct.product?.price}
+                &#8377;{customersProduct.product?.price}
                 </p>
                 <p className="font-semibold">
-                  &#8377;{customersProduct.product?.discountedPrice}
+                &#8377;{customersProduct.product?.discountedPrice}
                 </p>
                 <p className="text-green-600 font-semibold">
                   {" "}
