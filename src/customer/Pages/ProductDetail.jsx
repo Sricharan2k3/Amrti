@@ -35,6 +35,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { addItemToCart } from "../../State/Cart/Action";
 import Compare from "./Compare";
 import Kombucha from "./Kombucha";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -108,15 +110,48 @@ export default function ProductDetail() {
   const handleSetActiveImage = (image) => {
     setActiveImage(image);
   };
-   const handleSubmit = () => {
-     const data = { productId, size: selectedSize.name };
-     dispatch(addItemToCart({ data, jwt }));
-     navigate("/cart"); 
-   };
+   const handleSubmit = async () => {
+    try {
+      // Retrieve the token from cookies
+      const token = getCookie('jwtToken');
+
+      const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        },
+        body: JSON.stringify({ productId })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log(result);
+
+      // Show success notification
+      toast.success('Product added to cart successfully!');
+
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      toast.error('Failed to add product to cart.');
+    }
+  };
+   
        const a=customersProduct.product?.category?.name;
+
+
+       const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      };
 
   return (
     <div className="mt-10 bg-white">
+         <ToastContainer />
       <div className="pt-6">
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 px-4 pt-10">
           {/* Image gallery */}
