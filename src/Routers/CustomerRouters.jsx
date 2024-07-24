@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../customer/Pages/HomePage";
 import Cart from "../customer/components/Cart/Cart";
 import Navigation from "../customer/components/Navbar/Navigation";
+import Delivery from "../customer/components/Delivery/Delivery";
 
 import ProductDetail from "../customer/Pages/ProductDetail";
 import Order from "../customer/components/Order/Order";
@@ -90,6 +91,7 @@ const CustomerRouters = () => {
           <Route path="/login" element={<HomePage />}></Route>
           <Route path="/register" element={<HomePage />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/delivery" element={<Delivery/>}></Route>
           <Route path="/faq" element={<Faq />}></Route>
           <Route path="/product/:productId" element={<ProductDetail />}></Route>
           <Route path="/reports/:reportId" element={<Report />}></Route>

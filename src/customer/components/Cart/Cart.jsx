@@ -4,10 +4,12 @@ import { useState, useEffect } from "react"
 import { Button } from "../../../components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
 import { Separator } from "../../../components/ui/separator"
+import { useNavigate } from "react-router-dom"
 
 export default function Component() {
   const [cart, setCart] = useState([])
   const [total, setTotal] = useState(0)
+  const navigate=useNavigate()
 
 
    const getCookie = (name) => {
@@ -184,6 +186,15 @@ const fetchedCart = data.cart.items.map(item => ({
   }
 };
 
+const handleCheckout = () => {
+  navigate('/delivery');
+};
+
+
+const handleContinueShopping = () => {
+  navigate('/products');
+};
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-24">
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
@@ -244,10 +255,10 @@ const fetchedCart = data.cart.items.map(item => ({
             </div>
           </CardContent>
           <CardFooter className="flex gap-2">
-            <Button variant="outline" className="flex-1">
+            <Button variant="outline" className="flex-1" onClick={handleContinueShopping}>
               Continue Shopping
             </Button>
-            <Button className="flex-1">Proceed to Checkout</Button>
+            <Button className="flex-1" onClick={handleCheckout}>Proceed to Checkout</Button>
           </CardFooter>
         </Card>
       </div>
