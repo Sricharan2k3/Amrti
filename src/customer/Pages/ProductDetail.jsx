@@ -29,7 +29,7 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
 import VolunteerActivismOutlinedIcon from "@mui/icons-material/VolunteerActivismOutlined";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../State/Product/Action";
 import { useNavigate, useParams } from "react-router-dom";
 import { addItemToCart } from "../../State/Cart/Action";
@@ -37,42 +37,6 @@ import Compare from "./Compare";
 import Kombucha from "./Kombucha";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const getCookie = (name) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-};
-
-const addToCart = async (productId) => {
-  try {
-    // Retrieve the token from cookies
-    const token = getCookie('jwtToken');
-
-    const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
-      },
-      body: JSON.stringify({ productId })
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const result = await response.json();
-    console.log(result);
-
-    // Show success notification
-    toast.success('Product added to cart successfully!');
-
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    toast.error('Failed to add product to cart.');
-  }
-};
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -311,7 +275,7 @@ export default function ProductDetail() {
               </div>
               <form className="mt-10">
                 <Button
-                  onClick={() => addToCart(product._id)}
+                  onClick={handleSubmit}
                   variant="contained"
                   sx={{
                     px: "2rem",
