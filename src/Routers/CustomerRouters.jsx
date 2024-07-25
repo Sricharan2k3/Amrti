@@ -49,6 +49,7 @@ import MoringaLeafBananaSmoothie from "../customer/reports/MoringaBanana";
 import MoringaAvocadoToast from "../customer/reports/MoringaToast";
 import MoringaChutneyRice from "../customer/reports/MoringaRice";
 import MoringaUttapam from "../customer/reports/MoringaUttapam";
+import PaymentCallback from "../customer/components/Delivery/PaymentCallback";
 
 const CustomerRouters = () => {
   return (
@@ -92,6 +93,8 @@ const CustomerRouters = () => {
           <Route path="/register" element={<HomePage />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/delivery" element={<Delivery/>}></Route>
+         
+        <Route path="/payment-callback" element={<PaymentCallback />} />
           <Route path="/faq" element={<Faq />}></Route>
           <Route path="/product/:productId" element={<ProductDetail />}></Route>
           <Route path="/reports/:reportId" element={<Report />}></Route>

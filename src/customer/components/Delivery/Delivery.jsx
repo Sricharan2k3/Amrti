@@ -1,12 +1,12 @@
-"use client"
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Label } from "../../../components/ui/label"
 import { Input } from "../../../components/ui/input"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../../../components/ui/select"
 import { Button } from "../../../components/ui/button"
 
 const countryCodes = {
-      in: "+91",
+  in: "+91",
   us: "+1",
   ca: "+1",
   mx: "+52",
@@ -14,10 +14,10 @@ const countryCodes = {
   au: "+61",
   de: "+49",
   fr: "+33",
-
 };
 
 export default function Delivery() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -28,15 +28,8 @@ export default function Delivery() {
     countryCode: "",
     contact: ""
   });
-  const [submittedData, setSubmittedData] = useState(null);
-
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  };
-
   const [errors, setErrors] = useState({});
+  const [paymentStatus, setPaymentStatus] = useState(null);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -105,44 +98,71 @@ export default function Delivery() {
     }
 
     setErrors(newErrors);
-   
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    
-    e.preventDefault();
-    setSubmittedData(formData);
-      
-    console.log('Form Data:', formData);
-   
-    if (validateForm()) {
 
+       const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
       const token = getCookie('jwtToken');
-     
+      
       try {
-        const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/address/createAddress', {
+        // Save address
+        const addressResponse = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/address/createAddress', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` ,
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify(formData),
         });
 
-        const data=response.json()
-        console.log(data)
+        console.log(addressResponse)
 
-        if (response.ok) {
+        if (addressResponse.ok) {
           console.log('Delivery information saved successfully');
-   
+
+           console.log(window.location.origin)
+          // Initiate payment
+          const paymentResponse = await fetch('http://localhost:4000/api/v1/amrti/payment/initiate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              amount: 1, // Replace with actual amount
+              redirectUrl: 'http://localhost:4000/api/v1/amrti/payment/verify/:merchantTransactionId',
+            }),
+          });
+
+          console.log(paymentResponse)
+
+         
+
+          if (paymentResponse.ok) {
+            const paymentData = await paymentResponse.json();
+            // Redirect to PhonePe payment page
+
+            console.log(paymentData)
+            window.location.href = paymentData.redirectUrl;
+          } else {
+            setPaymentStatus('Failed to initiate payment');
+          }
         } else {
-          console.error('Failed to save delivery information');
-     
+          setPaymentStatus('Failed to save delivery information');
         }
       } catch (error) {
         console.error('Error:', error);
-    
+        setPaymentStatus('An error occurred');
       }
     }
   };
@@ -227,7 +247,7 @@ export default function Delivery() {
                 <SelectValue placeholder="Select your country" />
               </SelectTrigger>
               <SelectContent>
-              <SelectItem value="in">India</SelectItem>
+                <SelectItem value="in">India</SelectItem>
                 <SelectItem value="us">United States</SelectItem>
                 <SelectItem value="ca">Canada</SelectItem>
                 <SelectItem value="mx">Mexico</SelectItem>
@@ -235,7 +255,6 @@ export default function Delivery() {
                 <SelectItem value="au">Australia</SelectItem>
                 <SelectItem value="de">Germany</SelectItem>
                 <SelectItem value="fr">France</SelectItem>
-               
               </SelectContent>
             </Select>
             {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
@@ -273,9 +292,15 @@ export default function Delivery() {
               <p className="text-red-500 text-sm">{errors.countryCode || errors.contact}</p>}
           </div>
           <Button type="submit" className="w-full">
-            Continue to Payment
+            Proceed to Payment
           </Button>
         </form>
+        
+        {paymentStatus && (
+          <div className="mt-4 p-4 bg-red-100 text-red-700 rounded">
+            {paymentStatus}
+          </div>
+        )}
       </div>
     </div>
   )
