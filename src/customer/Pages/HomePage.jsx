@@ -14,7 +14,7 @@ import Report from './Report'
 
 
 const HomePage = () => {
-  const slides = ["https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-1.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-2.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti.jpg"];
+  const slides = ["https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-2.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-1.jpg"];
   return (
     <div className="overflow-hidden mt-16" >
       <MainCarousel autoSlide={true}>
