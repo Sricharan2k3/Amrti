@@ -132,7 +132,7 @@ export default function Delivery() {
 
            console.log(window.location.origin)
           // Initiate payment
-          const paymentResponse = await fetch('http://localhost:4000/api/v1/amrti/payment/initiate', {
+          const paymentResponse = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/payment/initiate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ export default function Delivery() {
             },
             body: JSON.stringify({
               amount: 1, // Replace with actual amount
-              redirectUrl: 'http://localhost:4000/api/v1/amrti/payment/verify/:merchantTransactionId',
+              redirectUrl: 'https://amrti-main-backend.vercel.app/api/v1/amrti/payment/verify/:merchantTransactionId',
             }),
           });
 
