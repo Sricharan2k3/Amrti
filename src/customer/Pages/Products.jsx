@@ -211,7 +211,7 @@ export default function Product() {
                     <h3 className="text-lg font-semibold">{product.title}</h3>
                   </a>
                   <div className="flex items-center justify-between mt-4">
-                    <span className="text-primary font-semibold">{product.discountedPrice.toFixed(2)}</span>
+                    <span className="text-primary font-semibold">₹{product.discountedPrice.toFixed(2)}</span>
                     <Button size="sm" variant="outline" onClick={() => addToCart(product._id)}>
                       Add to Cart
                     </Button>
