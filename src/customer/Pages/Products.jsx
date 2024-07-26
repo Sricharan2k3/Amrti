@@ -203,7 +203,7 @@ export default function Product() {
                     alt={product.title}
                     width={400}
                     height={400}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-64 object-cover"
                   />
                 </a>
                 <div className="p-4">

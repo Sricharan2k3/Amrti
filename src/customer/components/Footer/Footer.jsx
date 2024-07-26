@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 const Footer = () => {
-   const [activeCategory, setActiveCategory] = useState("Kombucha");
+   const [activeCategory, setActiveCategory] = useState("Powders");
 
   const categories = {
-    
-    Kombucha: [
-      { name: "Pomegranate", link: "/product/65c4b7f5dcfb762240655c67" },
-      { name: "Mint Mojito", link: "/product/65c4b8e2dcfb762240656117" },
-      { name: "Strawberry", link: "/product/65c4b92cdcfb76224065615e" },
-      { name: "Lemon", link: "/product/65c4b974dcfb7622406561ac" },
-      { name: "Ginger", link: "/product/65c4a934dcfb762240654f78" },
-    ],
     Powders: [
       { name: "Turmeric Powder", href: "/product/65b4e0f56d5fdf8013a98d53" },
             { name: "Moringa Powder", href: "/product/65b0b2ec84905519fd15883b" },
@@ -21,6 +13,15 @@ const Footer = () => {
             { name: "Tomato Powder", href: "/product/6694c2ccda8c2b2bddf64754" },
 
     ],
+    
+    Kombucha: [
+      { name: "Pomegranate", link: "/product/65c4b7f5dcfb762240655c67" },
+      { name: "Mint Mojito", link: "/product/65c4b8e2dcfb762240656117" },
+      { name: "Strawberry", link: "/product/65c4b92cdcfb76224065615e" },
+      { name: "Lemon", link: "/product/65c4b974dcfb7622406561ac" },
+      { name: "Ginger", link: "/product/65c4a934dcfb762240654f78" },
+    ],
+    
 
     
   };

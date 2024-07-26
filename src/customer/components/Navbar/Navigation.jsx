@@ -260,7 +260,7 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div className=" flex ">
                 <a href="/">
                   <img
                     className="logo"
@@ -272,7 +272,7 @@ export default function Navigation() {
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <Popover.Group className="hidden lg:ml-[700px] lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {navigation.pages.map((page) => (
                     <a
@@ -292,7 +292,7 @@ export default function Navigation() {
                 </div>
               </Popover.Group>
 
-              <div className="ml-auto flex items-center">
+              <div className="lg:-mr-52 md:-mr-8 sm:-mr-8 ml-8 flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {isLoggedIn ? (
                     <div>
@@ -337,7 +337,7 @@ export default function Navigation() {
 
                 {/* Cart */}
                 {isLoggedIn && (
-                  <div className="ml-4 flow-root lg:ml-6">
+                  <div className="ml-4 flow-root lg:ml-6 -mr-24">
                     <a href="/cart" className="group -m-2 flex items-center p-2">
                       <ShoppingBagIcon
                         className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
