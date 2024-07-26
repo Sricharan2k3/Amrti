@@ -125,22 +125,23 @@ export default function Delivery() {
           body: JSON.stringify(formData),
         });
 
-        console.log(addressResponse)
+        const addressData = await addressResponse.json();
+        console.log(addressData);
 
         if (addressResponse.ok) {
           console.log('Delivery information saved successfully');
 
            console.log(window.location.origin)
           // Initiate payment
-          const paymentResponse = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/payment/initiate', {
+          const paymentResponse = await fetch('http://localhost:4000/api/v1/amrti/payment/initiate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
-              amount: 1, // Replace with actual amount
-              redirectUrl: 'https://amrti-main-backend.vercel.app/api/v1/amrti/payment/verify/:merchantTransactionId',
+              amount: addressData.cartPrice, // Replace with actual amount
+              redirectUrl: 'http://localhost:4000/api/v1/amrti/payment/verify/:merchantTransactionId',
             }),
           });
 
