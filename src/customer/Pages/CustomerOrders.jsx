@@ -4,6 +4,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import { Button } from "../../components/ui/button";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../../components/ui/table";
 import { Badge } from "../../components/ui/badge";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -13,55 +14,50 @@ export default function Orders() {
     dateRange: "all",
   });
   const [loading, setLoading] = useState(true);
+  const [expandedOrder, setExpandedOrder] = useState(null);
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
   };
+
   const convertToIST = (utcDateStr) => {
-    // Create a new Date object from the UTC string
     const date = new Date(utcDateStr);
-    
-    // Convert to IST
     const istDateStr = date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    
     return istDateStr;
   };
 
+  function extractImageUrl(imageString) {
+    const match = imageString.match(/url: '([^']+)'/);
+    return match ? match[1] : null;
+  }
 
   useEffect(() => {
     async function fetchOrders() {
-        const token = getCookie('jwtToken');
-if(token){
-      try {
-        setLoading(true);
-        
-        const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/orders/getorders', {
+      const token = getCookie('jwtToken');
+      if (token) {
+        try {
+          setLoading(true);
+          const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/orders/getorders', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
             },
           });
-  
-        if (!response.ok) {
-          throw new Error('Failed to fetch orders');
+          if (!response.ok) {
+            throw new Error('Failed to fetch orders');
+          }
+          const data = await response.json();
+          console.log(data)
+          setOrders(data.orders);
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+        } finally {
+          setLoading(false);
         }
-        const data = await response.json();
-        console.log(data)
-        console.log(typeof(data.orders[0].status))
-        setOrders(data.orders);
-
-        
-
-      } 
-      catch (error) {
-        console.error('Error fetching orders:', error);
-      } finally {
-        setLoading(false);
       }
-    }
     }
     fetchOrders();
   }, []);
@@ -73,13 +69,16 @@ if(token){
       const dateFilter = filters.dateRange === "all" || new Date(order.date) >= new Date(filters.dateRange);
       return (
         (order._id.toLowerCase().includes(searchValue) ||
-        //   order.customer.toLowerCase().includes(searchValue) ||
           order.status.toLowerCase().includes(searchValue)) &&
         statusFilter &&
         dateFilter
       );
     });
   }, [orders, search, filters]);
+
+  const toggleOrderExpansion = (orderId) => {
+    setExpandedOrder(expandedOrder === orderId ? null : orderId);
+  };
 
   if (loading) {
     return <div>Loading orders...</div>;
@@ -139,8 +138,8 @@ if(token){
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead></TableHead>
               <TableHead>Order #</TableHead>
-              {/* <TableHead>Customer</TableHead> */}
               <TableHead>Date</TableHead>
               <TableHead>Total</TableHead>
               <TableHead>Status</TableHead>
@@ -148,29 +147,68 @@ if(token){
           </TableHeader>
           <TableBody>
             {filteredOrders.map((order) => (
-              <TableRow key={order.id} className="group cursor-pointer hover:bg-muted/50">
-                <TableCell>
-                  <p>{order._id}</p>
-                </TableCell>
-                {/* <TableCell>{order.customer}</TableCell> */}
-                <TableCell>{convertToIST(order.createdAt)}</TableCell>
-                <TableCell>₹{order.totalAmount}</TableCell>
-                <TableCell>
-                  <Badge
-                    variant={
-                      order.status.toLowerCase() === "pending"
-                        ? "warning"
-                        : order.status.toLowerCase() === "shipped"
-                        ? "info"
-                        : order.status.toLowerCase() === "delivered"
-                        ? "success"
-                        : "danger"
-                    }
-                  >
-                    {order.status}
-                  </Badge>
-                </TableCell>
-              </TableRow>
+              <React.Fragment key={order._id}>
+                <TableRow className="group cursor-pointer hover:bg-muted/50" onClick={() => toggleOrderExpansion(order._id)}>
+                  <TableCell>
+                    {expandedOrder === order._id ? (
+                      <ChevronUpIcon className="w-5 h-5" />
+                    ) : (
+                      <ChevronDownIcon className="w-5 h-5" />
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <p>{order._id}</p>
+                  </TableCell>
+                  <TableCell>{convertToIST(order.createdAt)}</TableCell>
+                  <TableCell>₹{order.totalAmount}</TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={
+                        order.status.toLowerCase() === "pending"
+                          ? "warning"
+                          : order.status.toLowerCase() === "shipped"
+                          ? "info"
+                          : order.status.toLowerCase() === "delivered"
+                          ? "success"
+                          : "danger"
+                      }
+                    >
+                      {order.status}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+                {expandedOrder === order._id && (
+                  <TableRow>
+                    <TableCell colSpan={5}>
+                      <div className="p-4 bg-muted/20 rounded-md">
+                        <h3 className="font-semibold mb-2">Order Items:</h3>
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Image</TableHead>
+                              <TableHead>Name</TableHead>
+                              <TableHead>Quantity</TableHead>
+                              <TableHead>Price</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {order.items.map((item, index) => (
+                              <TableRow key={index}>
+                                <TableCell>
+                                  <img src={extractImageUrl(item.image)} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                                </TableCell>
+                                <TableCell>{item.title}</TableCell>
+                                <TableCell>{item.quantity}</TableCell>
+                                <TableCell>₹{item.price}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </React.Fragment>
             ))}
           </TableBody>
         </Table>

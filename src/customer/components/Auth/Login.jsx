@@ -3,6 +3,7 @@ import { Grid, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+
 export default function LoginUserForm() {
   const navigate = useNavigate();
   const [openSnackBar, setOpenSnackBar] = useState(false);
@@ -34,7 +35,9 @@ export default function LoginUserForm() {
       }
 
       const result = await response.json();
+      console.log(result)
       const token = result.token;
+      
 
       if (token) {
         document.cookie = `jwtToken=${token}; path=/; secure; samesite=strict`;
@@ -42,6 +45,9 @@ export default function LoginUserForm() {
         setSnackBarMessage("Login Success");
         setSnackBarSeverity("success");
         setOpenSnackBar(true);
+        if(result.data.user.role==="admin"){
+            navigate("/admin")
+        }
         // Update the navbar here, for example by reloading the page
         setTimeout(() => {
           window.location.reload();
