@@ -7,40 +7,120 @@ export default function RegisterUserForm() {
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const [snackBarSeverity, setSnackBarSeverity] = useState("success");
+  const [errors, setErrors] = useState({});
+  const [showOtpField, setShowOtpField] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [userData, setUserData] = useState({});
 
   const handleClose = () => setOpenSnackBar(false);
+
+  const validateForm = (data) => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /^[a-zA-Z\s]+$/;
+
+    if (!nameRegex.test(data.name)) {
+      newErrors.name = "Name should not contain special symbols";
+    }
+    if (!emailRegex.test(data.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (data.password.length < 8) {
+      newErrors.password = "Password should be minimum 8 characters";
+    }
+    if (data.password !== data.passwordConfirm) {
+      newErrors.passwordConfirm = "Passwords do not match";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const userData = {
+    const formData = {
       name: data.get("name"),
       email: data.get("email"),
       password: data.get("password"),
       passwordConfirm: data.get("passwordConfirm"),
     };
 
+    if (!validateForm(formData)) {
+      return;
+    }
+
+    setUserData(formData);
+    await sendOtp(formData.email);
+  };
+
+  const sendOtp = async (email) => {
     try {
-      const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/signup", {
+      const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({ email }),
       });
 
       const result = await response.json();
-      console.log(result)
 
       if (response.ok) {
-        setSnackBarMessage("Register Success");
+        setSnackBarMessage("OTP sent successfully. Please check your email.");
         setSnackBarSeverity("success");
+        setShowOtpField(true);
       } else {
-        setSnackBarMessage(result.error || "Registration failed");
+        setSnackBarMessage(result.error || "Failed to send OTP");
         setSnackBarSeverity("error");
       }
     } catch (error) {
-      setSnackBarMessage("An error occurred");
+      setSnackBarMessage("An error occurred while sending OTP");
+      setSnackBarSeverity("error");
+    }
+
+    setOpenSnackBar(true);
+  };
+
+  const verifyOtpAndRegister = async () => {
+    try {
+      // First, verify the OTP
+      const verifyResponse = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: userData.email, otp }),
+      });
+
+      const verifyResult = await verifyResponse.json();
+
+      if (verifyResponse.ok) {
+        // If OTP is verified, proceed with registration
+        const registerResponse = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+
+        const registerResult = await registerResponse.json();
+
+        if (registerResponse.ok) {
+          setSnackBarMessage("Registration successful!");
+          setSnackBarSeverity("success");
+          setTimeout(() => navigate("/login"), 2000);
+        } else {
+          setSnackBarMessage(registerResult.error || "Registration failed");
+          setSnackBarSeverity("error");
+        }
+      } else {
+        setSnackBarMessage(verifyResult.error || "OTP verification failed");
+        setSnackBarSeverity("error");
+      }
+    } catch (error) {
+      setSnackBarMessage("An error occurred during registration");
       setSnackBarSeverity("error");
     }
 
@@ -59,6 +139,9 @@ export default function RegisterUserForm() {
               label="Name"
               fullWidth
               autoComplete="name"
+              error={!!errors.name}
+              helperText={errors.name}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
@@ -69,6 +152,9 @@ export default function RegisterUserForm() {
               label="Email"
               fullWidth
               autoComplete="email"
+              error={!!errors.email}
+              helperText={errors.email}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
@@ -80,6 +166,9 @@ export default function RegisterUserForm() {
               fullWidth
               autoComplete="new-password"
               type="password"
+              error={!!errors.password}
+              helperText={errors.password}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
@@ -91,17 +180,34 @@ export default function RegisterUserForm() {
               fullWidth
               autoComplete="new-password"
               type="password"
+              error={!!errors.passwordConfirm}
+              helperText={errors.passwordConfirm}
+              disabled={showOtpField}
             />
           </Grid>
+          {showOtpField && (
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="otp"
+                name="otp"
+                label="OTP"
+                fullWidth
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Button
               className="bg-[#9155FD] w-full"
-              type="submit"
+              type={showOtpField ? "button" : "submit"}
               variant="contained"
               size="large"
               sx={{ padding: ".8rem 0" }}
+              onClick={showOtpField ? verifyOtpAndRegister : undefined}
             >
-              Register
+              {showOtpField ? "Verify OTP and Register" : "Send OTP"}
             </Button>
           </Grid>
         </Grid>

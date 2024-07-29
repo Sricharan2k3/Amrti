@@ -10,6 +10,7 @@ import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import amrti from "./amrti.png";
 import AuthModal from "../Auth/AuthModal";
+import { Navigate } from "react-router-dom";
 
 const navigation = {
   categories: [
@@ -81,6 +82,7 @@ export default function Navigation() {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [userName, setUserName] = useState("");
 
+
   useEffect(() => {
     const token = getCookie("jwtToken");
     if (token) {
@@ -150,7 +152,7 @@ export default function Navigation() {
           }
         })
         if (!response.ok) {
-          throw new Error("Failed to fetch cart data")
+          throw new Error("Session")
         }
         const data = await response.json()
         console.log(data)
@@ -158,6 +160,8 @@ export default function Navigation() {
       
         // Assuming totalPrice is in cents
       } catch (error) {
+        setIsLoggedIn(false)
+      
         console.error("Error fetching cart:", error)
       }
     }
