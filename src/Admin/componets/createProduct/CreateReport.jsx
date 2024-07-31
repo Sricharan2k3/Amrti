@@ -85,7 +85,7 @@ const CreateReport = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Product Name"
+              label="Product Id"
               name="detail1"
               value={productData.detail1}
               onChange={handleChange}

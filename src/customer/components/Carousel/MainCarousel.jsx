@@ -99,7 +99,7 @@ const MainCarousel = ({ children: slides, autoSlide = false, autoSlideInterval =
 
     return (
         <div className=' overflow-hidden w-full relative'>
-            <div className='flex transition-transform w-screen ease-out duration-500' style={{ transform: `translateX(-${curr * 100}%)` }}>
+            <div className='flex transition-transform ease-out duration-500' style={{ transform: `translateX(-${curr * 100}%)` }}>
                 {slides}
             </div>
             <div className="absolute inset-0 flex items-center justify-between p-4">
