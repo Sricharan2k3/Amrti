@@ -14,14 +14,12 @@ import Report from './Report'
 
 
 const HomePage = () => {
-  const slides = ["https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/new-amrti-web-banner-1.png","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/new-amrti-web-banner.png","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/new-amrti-web-banner-2.png"];
+  const slides = ["https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-2.jpg","https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/web-banner-new-amrti-1.jpg"];
   return (
-    <div className="">
-  <MainCarousel autoSlide={true}>
-    {slides.map((s) => (
-      <img className='-pr-[720px]' alt='' src={s} key={s}    />
-    ))}
-  </MainCarousel>
+    <div className="overflow-hidden mt-16" >
+      <MainCarousel autoSlide={true}>
+        {[...slides.map((s) => <img className='w-[1560px] h-[680px]' src={s} key={s} />)]}
+      </MainCarousel>
 
       {/* <MainCarousel className="car" /> */}
       <div style={{ background: "white", margin: "0", padding: "0" }}>

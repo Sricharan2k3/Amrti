@@ -60,7 +60,7 @@ const navigation = {
     },
   ],
   pages: [
-    { name: "Home", href: "/" },
+    // { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Recipes", href: "/recipes" },
     { name: "Products", href: "/products" }
