@@ -13,8 +13,8 @@ const Testimonial = () => {
         <section class="mb-32 text-center">
           <h2 class="mb-12 text-3xl font-bold">Testimonials</h2>
 
-          <div class="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
-            <div class="mb-12 md:mb-0">
+          <div class="grid gap-x-6 md:grid-cols-1 lg:gap-x-12">
+            {/* <div class="mb-12 md:mb-0">
               <h5 class="mb-2 text-lg font-bold">Kratika</h5>
 
               <p class="mb-4">
@@ -94,7 +94,7 @@ const Testimonial = () => {
                       d="m480 757 157 95-42-178 138-120-182-16-71-168v387ZM233 976l65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
                     />
                   </svg> */}
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 96 960 960"
                     class="w-5 text-warning"
@@ -106,7 +106,7 @@ const Testimonial = () => {
                   </svg>
                 </li>
               </ul>
-            </div>
+            </div> */} 
 
             <div class="mb-12 md:mb-0">
               <h5 class="mb-2 text-lg font-bold">Abhay</h5>
@@ -192,7 +192,7 @@ const Testimonial = () => {
                 </li>
               </ul>
             </div>
-            <div class="mb-0">
+            {/* <div class="mb-0">
               <h5 class="mb-2 text-lg font-bold">Aditi</h5>
 
               <p class="mb-4">
@@ -272,7 +272,7 @@ const Testimonial = () => {
                       d="m323 851 157-94 157 95-42-178 138-120-182-16-71-168-71 167-182 16 138 120-42 178Zm-90 125 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-355Z"
                     />
                   </svg> */}
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 96 960 960"
                     class="w-5 text-warning"
@@ -284,7 +284,7 @@ const Testimonial = () => {
                   </svg>
                 </li>
               </ul>
-            </div>
+            </div> */} 
           </div>
         </section>
       </div>

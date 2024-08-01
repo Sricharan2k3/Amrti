@@ -25,7 +25,7 @@ const data = [
     col5: "Zesty",
   },
   {
-    heading: "Flavour",
+    heading: "Benefits",
     col1: "Aids digestion and boosts immunity",
     col2: "Supports heart-health & reduces inflammation",
     col3: "Supports detoxification",

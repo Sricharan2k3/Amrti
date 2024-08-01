@@ -7,6 +7,8 @@ import paneer from './Paneer.jpg'
 import chick from './Chickpea.jpg'
 import tempura from './Tempura.jpg'
 import sesame from './Sesame noodles.jpg'
+
+
 export const Recipes = () => {
   return (
     <div className="py-20">
@@ -24,7 +26,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Groundnut Oil
+                  
                 </a>
                 {/* <span className="text-gray-600">— 28 Dec 2020</span> */}
               </p>
@@ -59,7 +61,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Mustard oil
+                  
                 </a>
               </p>
               <a
@@ -93,7 +95,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Sunflower Oil
+                  
                 </a>
               </p>
               <a
@@ -127,7 +129,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Safflower oil
+                  
                 </a>
               </p>
               <a
@@ -161,7 +163,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Mustard oil
+                
                 </a>
               </p>
               <a
@@ -195,7 +197,7 @@ export const Recipes = () => {
                   aria-label="Category"
                   title="traveling"
                 >
-                  Sesame oil
+                  
                 </a>
               </p>
               <a
@@ -219,6 +221,227 @@ export const Recipes = () => {
               </a>
             </div>
           </div>
+
+
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/moringa-smoothie-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/mooringaSoothie"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                
+                </a>
+              </p>
+              <a
+                href="/recipes/mooringaSoothie"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                 Moringa Smoothie
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/mooringaSoothie"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+
+               
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/SPINACH-POWDER-OMELETTE-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/SpinachPowder"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                  
+                
+
+                </a>
+              </p>
+              <a
+                href="/recipes/SpinachPowder"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                   Spinach Powder Omelette
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/SpinachPowder"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Amla-Powder-Tea-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/AmlaPowder"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                
+                </a>
+              </p>
+              <a
+                href="/recipes/AmlaPowder"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                  Amla Powder Tea
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/AmlaPowder"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Beetroot-Powder-Latte-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/BeetRootPowder"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                
+                </a>
+              </p>
+              <a
+                href="/recipes/BeetRootPowder"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                Beetroot Powder Latte
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/BeetRootPowder"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Tomato-Powder-Popcorn-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/Tomato"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                
+                </a>
+              </p>
+              <a
+                href="/recipes/Tomato"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                  Tomato Powder Popcorn
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/Tomato"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+
+          <div className="overflow-hidden transition-shadow duration-300  rounded shadow-sm">
+            <img src="https://d33hqsk72xx8w2.cloudfront.net/wp-content/uploads/Papaya-Powder-out.png" className="object-cover w-full h-64" alt="" />
+            <div className="p-5 border border-t-0 h-full">
+              <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+                <a
+                  href="/recipes/PapayaPowder"
+                  className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                  aria-label="Category"
+                  title="traveling"
+                >
+                  
+                </a>
+              </p>
+              <a
+                href="/recipes/PapayaPowder"
+                aria-label="Category"
+                title="Film It!"
+                className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
+              >
+                 Papaya Powder
+              </a>
+              <p className="mb-2 text-gray-700">
+                Silky noodles coated in a rich, nutty sauce with a hint of
+                spice.
+              </p>
+              <a
+                href="/recipes/PapayaPowder"
+                aria-label=""
+                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+
+          
+
         </div>
       </div>
     </div>

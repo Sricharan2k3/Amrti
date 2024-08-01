@@ -35,12 +35,12 @@ export const register = (userData) => async (dispatch) => {
 
     dispatch(registerSuccess(user));
   } catch (error) {
-     let errorMessage = "An unexpected error occurred";
-     if (error.response && error.response.data) {
-       errorMessage = error.response.data.error;
-     } else if (error.message) {
-       errorMessage = error.message;
-     }
+    let errorMessage = "An unexpected error occurred";
+    if (error.response && error.response.data) {
+      errorMessage = error.response.data.error;
+    } else if (error.message) {
+      errorMessage = error.message;
+    }
     dispatch(registerFailure(errorMessage));
   }
 };
@@ -59,12 +59,12 @@ export const login = (userData) => async (dispatch) => {
     console.log("login ", user);
     dispatch(loginSuccess(user));
   } catch (error) {
-     let errorMessage = "An unexpected error occurred";
-     if (error.response && error.response.data) {
-       errorMessage = error.response.data.error;
-     } else if (error.message) {
-       errorMessage = error.message;
-     }
+    let errorMessage = "An unexpected error occurred";
+    if (error.response && error.response.data) {
+      errorMessage = error.response.data.error;
+    } else if (error.message) {
+      errorMessage = error.message;
+    }
     dispatch(loginFailure(errorMessage));
   }
 };
@@ -80,16 +80,17 @@ export const getUser = (token) => {
         },
       });
       const user = response.data;
-      dispatch({ type: GET_USER_SUCCESS, payload: user });
       console.log("req User ", user);
+      dispatch({ type: GET_USER_SUCCESS, payload: user });
+
       return;
     } catch (error) {
-       let errorMessage = "An unexpected error occurred";
-       if (error.response && error.response.data) {
-         errorMessage = error.response.data.error;
-       } else if (error.message) {
-         errorMessage = error.message;
-       }
+      let errorMessage = "An unexpected error occurred";
+      if (error.response && error.response.data) {
+        errorMessage = error.response.data.error;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
       dispatch({ type: GET_USER_FAILURE, payload: errorMessage });
     }
   };
@@ -103,12 +104,12 @@ export const getAllUser = () => {
       dispatch({ type: GET_ALL_USER_SUCCESS, payload: users });
       console.log("req User ", users);
     } catch (error) {
-       let errorMessage = "An unexpected error occurred";
-       if (error.response && error.response.data) {
-         errorMessage = error.response.data.error;
-       } else if (error.message) {
-         errorMessage = error.message;
-       }
+      let errorMessage = "An unexpected error occurred";
+      if (error.response && error.response.data) {
+        errorMessage = error.response.data.error;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
       dispatch({ type: GET_ALL_USER_FAILURE, payload: errorMessage });
     }
   };

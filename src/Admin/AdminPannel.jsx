@@ -50,23 +50,23 @@ export default function AdminPannel() {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const [sideBarVisible, setSideBarVisible] = React.useState(false);
   const navigate=useNavigate();
-  const dispatch=useDispatch()
+  // const dispatch=useDispatch()
   const {auth}=useSelector(store=>store);
 
-  const handleLogout = () => {
-   
-    dispatch(logout());
-    navigate("/")
-
+  const handleLogout = async () => {
+    
+    const response=await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/logout")
+    console.log(response)
   };
+  
 
-  const jwt = localStorage.getItem("jwt");
+  // const jwt = localStorage.getItem("jwt");
 
-  useEffect(() => {
-    if (jwt) {
-      dispatch(getUser(jwt));
-    }
-  }, [jwt]);
+  // useEffect(() => {
+  //   if (jwt) {
+  //     dispatch(getUser(jwt));
+  //   }
+  // }, [jwt]);
 
   const drawer = (
     <Box

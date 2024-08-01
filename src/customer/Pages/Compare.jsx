@@ -97,63 +97,64 @@ const data = [
 ];
 const Compare = () => {
   return (
-    <Paper sx={{ overflowX: "auto" }}>
-      <Grid container spacing={2}>
-        {data.map((row, rowIndex) => (
-          <React.Fragment key={rowIndex}>
-            {Object.entries(row).map(([key, value], colIndex) => (
-              <Grid
-                item
-                xs={12}
-                sm={2}
-                key={key}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: colIndex % 2 === 0 ? "#f0f0f0" : "white",
-                  padding: "20px",
-                  border: "1px solid #e0e0e0",
-                }}
-              >
-                {rowIndex === 0 && colIndex !== 0 ? (
-                  <>
-                    <img
-                      src={value.image}
-                      alt={value.title}
-                      style={{
-                        width: "auto",
-                        height: "auto",
-                        maxWidth: "120px",
-                        marginTop: "20px",
-                      }}
-                    />
-                    <Typography variant="body1">
-                      <strong>{value.title}</strong>
-                    </Typography>
-                  </>
-                ) : colIndex === 0 ? (
-                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                    {value}
-                  </Typography>
-                ) : rowIndex === 3 ? (
-                  <ul style={{ padding: 0 }}>
-                    {value.map((item, index) => (
-                      <li key={index}>
-                        <Typography variant="body2">{item}</Typography>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <Typography variant="body1">{value}</Typography>
-                )}
-              </Grid>
-            ))}
-          </React.Fragment>
-        ))}
-      </Grid>
-    </Paper>
+    <div></div>
+    // <Paper sx={{ overflowX: "auto" }}>
+    //   <Grid container spacing={2}>
+    //     {data.map((row, rowIndex) => (
+    //       <React.Fragment key={rowIndex}>
+    //         {Object.entries(row).map(([key, value], colIndex) => (
+    //           <Grid
+    //             item
+    //             xs={12}
+    //             sm={2}
+    //             key={key}
+    //             sx={{
+    //               display: "flex",
+    //               flexDirection: "column",
+    //               alignItems: "center",
+    //               justifyContent: "center",
+    //               backgroundColor: colIndex % 2 === 0 ? "#f0f0f0" : "white",
+    //               padding: "20px",
+    //               border: "1px solid #e0e0e0",
+    //             }}
+    //           >
+    //             {rowIndex === 0 && colIndex !== 0 ? (
+    //               <>
+    //                 <img
+    //                   src={value.image}
+    //                   alt={value.title}
+    //                   style={{
+    //                     width: "auto",
+    //                     height: "auto",
+    //                     maxWidth: "120px",
+    //                     marginTop: "20px",
+    //                   }}
+    //                 />
+    //                 <Typography variant="body1">
+    //                   <strong>{value.title}</strong>
+    //                 </Typography>
+    //               </>
+    //             ) : colIndex === 0 ? (
+    //               <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+    //                 {value}
+    //               </Typography>
+    //             ) : rowIndex === 3 ? (
+    //               <ul style={{ padding: 0 }}>
+    //                 {value.map((item, index) => (
+    //                   <li key={index}>
+    //                     <Typography variant="body2">{item}</Typography>
+    //                   </li>
+    //                 ))}
+    //               </ul>
+    //             ) : (
+    //               <Typography variant="body1">{value}</Typography>
+    //             )}
+    //           </Grid>
+    //         ))}
+    //       </React.Fragment>
+    //     ))}
+    //   </Grid>
+    // </Paper>
   );
 };
 

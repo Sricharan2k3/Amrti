@@ -1,82 +1,147 @@
-import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
+import { Grid, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, register } from "../../../State/Auth/Action";
-import { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function RegisterUserForm({ handleNext }) {
+export default function RegisterUserForm() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [openSnackBar, setOpenSnackBar] = useState(false);
-  const { auth } = useSelector((store) => store);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarSeverity, setSnackBarSeverity] = useState("success");
+  const [errors, setErrors] = useState({});
+  const [showOtpField, setShowOtpField] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [userData, setUserData] = useState({});
+
   const handleClose = () => setOpenSnackBar(false);
-const [step, setStep] = useState(1);
-  const jwt = localStorage.getItem("jwt");
 
-  useEffect(() => {
-    if (jwt) {
-      dispatch(getUser(jwt));
+  const validateForm = (data) => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /^[a-zA-Z\s]+$/;
+
+    if (!nameRegex.test(data.name)) {
+      newErrors.name = "Name should not contain special symbols";
     }
-  }, [jwt]);
+    if (!emailRegex.test(data.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (data.password.length < 8) {
+      newErrors.password = "Password should be minimum 8 characters";
+    }
+    if (data.password !== data.passwordConfirm) {
+      newErrors.passwordConfirm = "Passwords do not match";
+    }
 
-  useEffect(() => {
-    if (auth.user || auth.error) setOpenSnackBar(true);
-   
-  }, [auth.user,auth.error]);
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if(step==1){
-      const data = new FormData(event.currentTarget);
-      // eslint-disable-next-line no-console
-      const userData = {
-        firstName: data.get("firstName"),
-        lastName: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-        phone: data.get("phone"),
-        step:1,
-      };
-      dispatch(register(userData));
-      setStep(2)
-    }
-    else{
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    const userData = {
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
+    const formData = {
+      name: data.get("name"),
       email: data.get("email"),
       password: data.get("password"),
-      phone: data.get("phone"),
-      step: 2,
-      otp1: data.get("otp1"),
+      passwordConfirm: data.get("passwordConfirm"),
     };
-    console.log("user data", userData);
-    dispatch(register(userData));}
+
+    if (!validateForm(formData)) {
+      return;
+    }
+
+    setUserData(formData);
+    await sendOtp(formData.email);
   };
+
+  const sendOtp = async (email) => {
+    try {
+      const response = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/send-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSnackBarMessage("OTP sent successfully. Please check your email.");
+        setSnackBarSeverity("success");
+        setShowOtpField(true);
+      } else {
+        setSnackBarMessage(result.error || "Failed to send OTP");
+        setSnackBarSeverity("error");
+      }
+    } catch (error) {
+      setSnackBarMessage("An error occurred while sending OTP");
+      setSnackBarSeverity("error");
+    }
+
+    setOpenSnackBar(true);
+  };
+
+  const verifyOtpAndRegister = async () => {
+    try {
+      // First, verify the OTP
+      const verifyResponse = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: userData.email, otp }),
+      });
+
+      const verifyResult = await verifyResponse.json();
+
+      if (verifyResponse.ok) {
+        // If OTP is verified, proceed with registration
+        const registerResponse = await fetch("https://amrti-main-backend.vercel.app/api/v1/amrti/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+
+        const registerResult = await registerResponse.json();
+
+        if (registerResponse.ok) {
+          setSnackBarMessage("Registration successful!");
+          setSnackBarSeverity("success");
+          setTimeout(() => navigate("/login"), 2000);
+        } else {
+          setSnackBarMessage(registerResult.error || "Registration failed");
+          setSnackBarSeverity("error");
+        }
+      } else {
+        setSnackBarMessage(verifyResult.error || "OTP verification failed");
+        setSnackBarSeverity("error");
+      }
+    } catch (error) {
+      setSnackBarMessage("An error occurred during registration");
+      setSnackBarSeverity("error");
+    }
+
+    setOpenSnackBar(true);
+  };
+
   return (
     <div className="">
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               required
-              id="firstName"
-              name="firstName"
-              label="First Name"
+              id="name"
+              name="name"
+              label="Name"
               fullWidth
-              autoComplete="given-name"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              label="Last Name"
-              fullWidth
-              autoComplete="given-name"
+              autoComplete="name"
+              error={!!errors.name}
+              helperText={errors.name}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
@@ -86,7 +151,10 @@ const [step, setStep] = useState(1);
               name="email"
               label="Email"
               fullWidth
-              autoComplete="given-name"
+              autoComplete="email"
+              error={!!errors.email}
+              helperText={errors.email}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
@@ -96,64 +164,58 @@ const [step, setStep] = useState(1);
               name="password"
               label="Password"
               fullWidth
-              autoComplete="given-name"
+              autoComplete="new-password"
               type="password"
+              error={!!errors.password}
+              helperText={errors.password}
+              disabled={showOtpField}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               required
-              id="phone"
-              name="phone"
-              label="Phone No"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              label="Confirm Password"
               fullWidth
-              autoComplete="given-name"
+              autoComplete="new-password"
+              type="password"
+              error={!!errors.passwordConfirm}
+              helperText={errors.passwordConfirm}
+              disabled={showOtpField}
             />
           </Grid>
-
+          {showOtpField && (
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="otp"
+                name="otp"
+                label="OTP"
+                fullWidth
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+            </Grid>
+          )}
           <Grid item xs={12}>
-            {step === 1 && (
-              <Button
-                className="bg-[#9155FD] w-full"
-                type="submit"
-                variant="contained"
-                size="large"
-                sx={{ padding: ".8rem 0" }}
-              >
-                Send OTP
-              </Button>
-            )}
-            {step === 2 && (
-              <>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    id="otp1"
-                    name="otp1"
-                    label="otp"
-                    fullWidth
-                    autoComplete="given-name"
-                  />
-                </Grid>
-                <br />
-                <Button
-                  className="bg-[#9155FD] w-full"
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  sx={{ padding: ".8rem 0" }}
-                >
-                  Verify OTP
-                </Button>
-              </>
-            )}
+            <Button
+              className="bg-[#9155FD] w-full"
+              type={showOtpField ? "button" : "submit"}
+              variant="contained"
+              size="large"
+              sx={{ padding: ".8rem 0" }}
+              onClick={showOtpField ? verifyOtpAndRegister : undefined}
+            >
+              {showOtpField ? "Verify OTP and Register" : "Send OTP"}
+            </Button>
           </Grid>
         </Grid>
       </form>
 
       <div className="flex justify-center flex-col items-center">
-        <div className="py-3 flex items-center ">
-          <p className="m-0 p-0">Already have an account ?</p>
+        <div className="py-3 flex items-center">
+          <p className="m-0 p-0">Already have an account?</p>
           <Button
             onClick={() => navigate("/login")}
             className="ml-5"
@@ -169,8 +231,8 @@ const [step, setStep] = useState(1);
         autoHideDuration={6000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          {auth.error ? auth.error : auth.user ? "Register Success" : ""}
+        <Alert onClose={handleClose} severity={snackBarSeverity} sx={{ width: "100%" }}>
+          {snackBarMessage}
         </Alert>
       </Snackbar>
     </div>

@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Typography } from "@mui/material";
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
-
-import { Fragment } from "react";
+import React, { useState } from "react";
+import { Typography, Grid, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import "./CreateProductForm.css";
-import { createReport } from "../../../State/Report/Action";
 
 const CreateReport = () => {
   const [productData, setProductData] = useState({
     batchNo: "",
-    detail1: "",
-    detail2: "",
-    detail3: "",
-    detail4: "",
-    qrCode: "",
+    productId: "",
+    productReport: "",
+    quantity: "",
+    type: "", // New field for pouch/tin selection
   });
-  const dispatch = useDispatch();
-  const {report} = useSelector((store) => store); // Access the updated report array
-  const latestQRCode =
-    report.length > 0 ? report[report.length - 1].qrCode : ""; // Assuming the latest report's QR code is what you want
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,34 +22,62 @@ const CreateReport = () => {
     }));
   };
 
-  useEffect(() => {
-    if (latestQRCode) {
-      setProductData((prevState) => ({
-        ...prevState,
-        qrCode: latestQRCode,
-      }));
-    }
-  }, [latestQRCode]);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
     try {
-      const newReport = await dispatch(createReport(productData));
+      let apiUrl;
+      if (productData.type === "pouch") {
+        apiUrl = `https://amrti-main-backend.vercel.app/api/v1/amrti/products/addbatch/${productData.productId}/pouch`;
+      } else if (productData.type === "tin") {
+        apiUrl = `https://amrti-main-backend.vercel.app/api/v1/amrti/products/addbatch/${productData.productId}/powder`;
+      } else {
+        throw new Error("Please select a product type (pouch or tin)");
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productData),
+      });
+
+
+      if (!response.ok) {
+        throw new Error('Failed to create report');
+      }
+
+      const result = await response.json();
+      console.log('Report created:', result);
       
-      setProductData((prevState) => ({
-        ...prevState,
-        qrCode: newReport.qrCode,
-      }));
+      // Clear form after successful submission
+      setProductData({
+        batchNo: "",
+        productId: "",
+        productReport: "",
+        quantity: "",
+        type: "",
+      });
+
+      setSuccess(true);
     } catch (error) {
       console.error("Failed to create report:", error);
+      setError(error.message || "Failed to create report. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Fragment className="createProductContainer ">
+    <div className="createProductContainer">
       <Typography
         variant="h3"
         sx={{ textAlign: "center" }}
-        className="py-10 text-center "
+        className="py-10 text-center"
       >
         Add New Report
       </Typography>
@@ -85,18 +98,18 @@ const CreateReport = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Product Name"
-              name="detail1"
-              value={productData.detail1}
+              label="Product Id"
+              name="productId"
+              value={productData.productId}
               onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Drive link"
-              name="detail2"
-              value={productData.detail2}
+              label="Product Report"
+              name="productReport"
+              value={productData.productReport}
               onChange={handleChange}
             />
           </Grid>
@@ -104,10 +117,26 @@ const CreateReport = () => {
             <TextField
               fullWidth
               label="Quantity"
-              name="detail3"
-              value={productData.detail3}
+              name="quantity"
+              value={productData.quantity}
               onChange={handleChange}
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl fullWidth>
+              <InputLabel id="type-select-label">Type</InputLabel>
+              <Select
+                labelId="type-select-label"
+                id="type-select"
+                value={productData.type}
+                label="Type"
+                name="type"
+                onChange={handleChange}
+              >
+                <MenuItem value="pouch">Pouch</MenuItem>
+                <MenuItem value="tin">Tin</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
 
           <Grid item xs={12}>
@@ -117,35 +146,26 @@ const CreateReport = () => {
               className="py-20"
               size="large"
               type="submit"
+              disabled={loading}
             >
-              Add Report
+              {loading ? "Adding Report..." : "Add Report"}
             </Button>
-            {/* <Button
-              variant="contained"
-              sx={{ p: 1.8 }}
-              className="py-20 ml-10"
-              size="large"
-              onClick={()=>handleAddProducts(dressPage1)}
-            >
-              Add Products By Loop
-            </Button> */}
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          {productData.qrCode && (
-            <img
-              src={productData.qrCode}
-              alt="QR Code"
-              style={{
-                marginTop: "20px",
-                maxWidth: "200px",
-                maxHeight: "200px",
-              }}
-            />
+          
+          {error && (
+            <Grid item xs={12}>
+              <Typography color="error">{error}</Typography>
+            </Grid>
+          )}
+
+          {success && (
+            <Grid item xs={12}>
+              <Typography color="success">Report successfully created!</Typography>
+            </Grid>
           )}
         </Grid>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

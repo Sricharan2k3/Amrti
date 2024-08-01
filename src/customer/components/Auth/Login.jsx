@@ -1,29 +1,18 @@
 import * as React from "react";
-import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
+import { Grid, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, login } from "../../../State/Auth/Action";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function LoginUserForm({ handleNext }) {
+
+export default function LoginUserForm() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
   const [openSnackBar, setOpenSnackBar] = useState(false);
-  const { auth } = useSelector((store) => store);
-  const handleCloseSnakbar = () => setOpenSnackBar(false);
-  useEffect(() => {
-    if (jwt) {
-      dispatch(getUser(jwt));
-    }
-  }, [jwt]);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarSeverity, setSnackBarSeverity] = useState("success");
 
-  useEffect(() => {
-    if (auth.user || auth.error) setOpenSnackBar(true);
-    
-  }, [auth.user, auth.error]);
-  const handleSubmit = (event) => {
+  const handleCloseSnackBar = () => setOpenSnackBar(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -32,11 +21,54 @@ export default function LoginUserForm({ handleNext }) {
       password: data.get("password"),
     };
 
-    dispatch(login(userData));
+    try {
+      const response = await fetch('https://amrti-main-backend.vercel.app/api/v1/amrti/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Invalid credentials');
+      }
+
+      const result = await response.json();
+      console.log(result)
+      const token = result.token;
+      
+
+      if (token) {
+        document.cookie = `jwtToken=${token}; path=/; secure; samesite=strict`;
+        localStorage.setItem("jwt", token); // Save the token in local storage
+        setSnackBarMessage("Login Success");
+        setSnackBarSeverity("success");
+        setOpenSnackBar(true);
+        if(result.data.user.role==="admin"){
+            navigate("/admin")
+        }
+        // Update the navbar here, for example by reloading the page
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    } catch (error) {
+      setSnackBarMessage(error.message);
+      setSnackBarSeverity("error");
+      setOpenSnackBar(true);
+    }
   };
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      // Optionally, you can verify the JWT by making a backend call to get user info
+    }
+  }, []);
+
   return (
-    <React.Fragment className=" shadow-lg ">
+    <React.Fragment>
       <form className="w-full" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -46,7 +78,6 @@ export default function LoginUserForm({ handleNext }) {
               name="email"
               label="Email"
               fullWidth
-              autoComplete="given-name"
             />
           </Grid>
           <Grid item xs={12}>
@@ -56,11 +87,9 @@ export default function LoginUserForm({ handleNext }) {
               name="password"
               label="Password"
               fullWidth
-              autoComplete="given-name"
               type="password"
             />
           </Grid>
-
           <Grid item xs={12}>
             <Button
               className="bg-[#9155FD] w-full"
@@ -76,7 +105,7 @@ export default function LoginUserForm({ handleNext }) {
       </form>
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
-          <p className="m-0 p-0">don't have account ?</p>
+          <p className="m-0 p-0">Don't have an account?</p>
           <Button
             onClick={() => navigate("/register")}
             className="ml-5"
@@ -89,14 +118,14 @@ export default function LoginUserForm({ handleNext }) {
       <Snackbar
         open={openSnackBar}
         autoHideDuration={6000}
-        onClose={handleCloseSnakbar}
+        onClose={handleCloseSnackBar}
       >
         <Alert
-          onClose={handleCloseSnakbar}
-          severity="success"
+          onClose={handleCloseSnackBar}
+          severity={snackBarSeverity}
           sx={{ width: "100%" }}
         >
-          {auth.error ? auth.error : auth.user ? "Login Success" : ""}
+          {snackBarMessage}
         </Alert>
       </Snackbar>
     </React.Fragment>

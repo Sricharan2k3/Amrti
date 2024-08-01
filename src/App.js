@@ -13,29 +13,65 @@ import CustomerRouters from "./Routers/CustomerRouters";
 import AdminPannel from "./Admin/AdminPannel";
 import { getUser, logout } from "../src/State/Auth/Action";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AdminRoutes from "./Routers/AdminRoutes";
+
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+};
 
 function App() {
   const { auth, cart } = useSelector((store) => store);
-  const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
+  // const dispatch = useDispatch();
+  // const jwt = localStorage.getItem("jwt");
+  const token = getCookie("jwtToken");
+  const [user, setUser] = useState("");
   useEffect(() => {
-    if (jwt) {
-      dispatch(getUser(jwt));
+    //   if (jwt) {
+    //     dispatch(getUser(jwt));
+    //   }
+    // }, [])
+    async function fetchUser() {
+      try {
+        const response = await fetch(
+          "https://amrti-main-backend.vercel.app/api/v1/amrti/users/role",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+        console.log(result);
+        setUser(result.role);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
     }
-  }, []);
-     const getRoutes = () => {
-       if (auth?.user?.role === "ADMIN") {
-         return <AdminRoutes />;
-       } else {
-         return <CustomerRouters />;
-       }
-     };
+    fetchUser();
+  }, [token]);
+  const getRoutes = () => {
+    console.log(user);
+
+    if (user === "admin") {
+      console.log("Hi");
+      return <AdminRoutes />;
+    } else {
+      return <CustomerRouters />;
+    }
+  };
   return (
     <div>
       <Routes>
         <Route path="/*" element={getRoutes()} />
+
         {/* <Route path="/admin/*" element={<AdminPannel />}></Route> */}
       </Routes>
     </div>
