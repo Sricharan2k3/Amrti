@@ -3,12 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../customer/Pages/HomePage";
 import Cart from "../customer/components/Cart/Cart";
 import Navigation from "../customer/components/Navbar/Navigation";
+import Delivery from "../customer/components/Delivery/Delivery";
 
 import ProductDetail from "../customer/Pages/ProductDetail";
 import Order from "../customer/components/Order/Order";
 import Footer from "../customer/components/Footer/Footer";
 import Checkout from "../customer/components/Checkout/Checkout";
 import { About } from "../customer/Pages/About";
+import  Product  from "../customer/Pages/Products";
+
 import { Faq } from "../customer/Pages/FAQ";
 import TnC from "../customer/Pages/TnC";
 import Privacy from "../customer/Pages/Privacy";
@@ -34,6 +37,21 @@ import MoringaReport from "../customer/reports/MoringaReport"
 import MoringaRecipeCategories from "../customer/reports/MoringaRecipe";
 import MoringaFarmerDetails from "../customer/reports/MoringaTraceability";
 import MoringaReportViewer from "../customer/reports/MoringaTest";
+import EasyToUse from "../customer/reports/MoringaEasy";
+import Beverage from "../customer/reports/MoringaTea";
+import Smoothie from "../customer/reports/MoringaSmoothie";
+import Food from "../customer/reports/MoringaFood";
+import MoringaLemon from "../customer/reports/MoringaLemon"
+import MoringaIce from "../customer/reports/MoringaIceTea";
+import MoringaNormal from "../customer/reports/MoringaNormalTea";
+import MoringaLeafAlmondSmoothie from "../customer/reports/MoringaAlmond";
+import MoringaLeafBananaSmoothie from "../customer/reports/MoringaBanana";
+import MoringaAvocadoToast from "../customer/reports/MoringaToast";
+import MoringaChutneyRice from "../customer/reports/MoringaRice";
+import MoringaUttapam from "../customer/reports/MoringaUttapam";
+import PaymentCallback from "../customer/components/Delivery/PaymentCallback";
+import Orders from "../customer/Pages/CustomerOrders";
+
 const CustomerRouters = () => {
   return (
     <div>
@@ -42,7 +60,22 @@ const CustomerRouters = () => {
       <Route path="/product/moringa/101" element={<MoringaReport/>}></Route>
       <Route path="/product/moringa/recipes" element={<MoringaRecipeCategories/>}></Route>
       <Route path="/product/moringa/farmer-details" element={<MoringaFarmerDetails/>}></Route>
-      <Route path="/product/moringa/product-report" element={<MoringaReportViewer driveLink={"https://drive.google.com/file/d/1jgdFQWdurlhx6URjlSZvTxCz-PDCp1ru/preview"}/>}></Route>
+      <Route path="/product/moringa/product-report" element={<MoringaReportViewer driveLink={"https://drive.google.com/file/d/1cJZtTmaSuZpT6SLJZC0TL2D0GZet7I2l/view?usp=sharing"}/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use" element={<EasyToUse/>}></Route>
+      <Route path="/product/moringa/recipes/beverage" element={<Beverage/>}></Route>
+      <Route path="/product/moringa/recipes/smoothie" element={<Smoothie/>}></Route>
+      <Route path="/product/moringa/recipes/food" element={<Food/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-lemon-water" element={<MoringaLemon/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-ice-tea" element={<MoringaIce/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-Normal-tea" element={<MoringaNormal/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-banana-smoothie" element={<MoringaLeafBananaSmoothie/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-almond-smoothie" element={<MoringaLeafAlmondSmoothie/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-uttapam" element={<MoringaUttapam/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-rice" element={<MoringaChutneyRice/>}></Route>
+      <Route path="/product/moringa/recipes/easy-to-use/moringa-toast" element={<MoringaAvocadoToast/>}></Route>
+
+
+
       </Routes>
       </div>
       <div className="nav">
@@ -56,9 +89,14 @@ const CustomerRouters = () => {
           <Route path="/TnC" element={<TnC />}></Route>
           <Route path="/privacy" element={<Privacy />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/products" element={<Product/>}></Route>
           <Route path="/login" element={<HomePage />}></Route>
           <Route path="/register" element={<HomePage />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/delivery" element={<Delivery/>}></Route>
+          <Route path="/orders" element={<Orders/>}></Route>
+         
+        <Route path="/payment-callback" element={<PaymentCallback />} />
           <Route path="/faq" element={<Faq />}></Route>
           <Route path="/product/:productId" element={<ProductDetail />}></Route>
           <Route path="/reports/:reportId" element={<Report />}></Route>
